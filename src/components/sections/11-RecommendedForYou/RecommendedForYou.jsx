@@ -65,8 +65,7 @@ import {
   GraduationCap,
   FileCheck,
   SkipBack,
-  SkipForward,
-  Home
+  SkipForward
 } from 'lucide-react'
 import { recommendedForYouData, technicalSupportServicesData } from './RecommendedForYouData'
 
@@ -141,18 +140,7 @@ const TOPIC_META = [
 /* ═══════════════════════════════════════════════════════
    2.  MAIN COMPONENT (100% PURE SVG 3D + ROTATING ARC)
    ═══════════════════════════════════════════════════════ */
-export function TechnicalSupportServicesShowcase({ onClose, onHome }) {
-  const handleBack = () => {
-    if (onClose) onClose();
-    else window.history.back();
-  };
-
-  const handleHome = () => {
-    if (onHome) onHome();
-    else if (onClose) onClose();
-    else window.location.hash = '#home';
-  };
-
+export function TechnicalSupportServicesShowcase() {
   const rawServices = technicalSupportServicesData?.services || []
 
   // Combine data items with their related icons & styling
@@ -168,23 +156,11 @@ export function TechnicalSupportServicesShowcase({ onClose, onHome }) {
   })
 
   const [activeIndex, setActiveIndex] = useState(0) // Default: Service 1
-  const [isTransitioning, setIsTransitioning] = useState(false)
-  const [isAutoPlayPaused, setIsAutoPlayPaused] = useState(false)
-  const [isBooting, setIsBooting] = useState(true)
   const [direction, setDirection] = useState('next')
   const [isClickPulse, setIsClickPulse] = useState(false)
   const [touchStartX, setTouchStartX] = useState(null)
 
   const [cardRef, inView] = useInView({ threshold: 0.08, triggerOnce: true })
-
-  // 1.8s Initial Cyber Boot-Up Sequence on Scroll
-  useEffect(() => {
-    if (!inView) return
-    const bootTimer = setTimeout(() => {
-      setIsBooting(false)
-    }, 1800)
-    return () => clearTimeout(bootTimer)
-  }, [inView])
 
   const currentService = servicesList[activeIndex] || servicesList[0] || {
     id: 1,
@@ -207,31 +183,17 @@ export function TechnicalSupportServicesShowcase({ onClose, onHome }) {
   }
   const titleParts = splitTitle(currentService.title)
 
-  const handleSelectService = (i) => {
-    if (i === activeIndex) return
-    setDirection(i > activeIndex ? 'next' : 'prev')
-    setIsClickPulse(true)
-    setIsTransitioning(true)
-    setActiveIndex(i)
-    setTimeout(() => setIsTransitioning(false), 280)
-    setTimeout(() => setIsClickPulse(false), 450)
-  }
-
   const handlePrev = () => {
     setDirection('prev')
     setIsClickPulse(true)
-    setIsTransitioning(true)
     setActiveIndex((prev) => (prev === 0 ? servicesList.length - 1 : prev - 1))
-    setTimeout(() => setIsTransitioning(false), 280)
     setTimeout(() => setIsClickPulse(false), 450)
   }
 
   const handleNext = () => {
     setDirection('next')
     setIsClickPulse(true)
-    setIsTransitioning(true)
     setActiveIndex((prev) => (prev === servicesList.length - 1 ? 0 : prev + 1))
-    setTimeout(() => setIsTransitioning(false), 280)
     setTimeout(() => setIsClickPulse(false), 450)
   }
 
@@ -267,36 +229,6 @@ export function TechnicalSupportServicesShowcase({ onClose, onHome }) {
   // Auto-scroll / Auto-rotation removed as requested ("ye scroll ho raha he scroll ko hatao")
   // The service card now stays stable and only changes when user clicks Next/Prev buttons or swipes.
 
-  /* ── 9 Arc Node Positions (Position 4 is TOP APEX CENTER) ── */
-  const arcNodes = [
-    { x: 6.8, y: 36.5 }, // pos 0 (left-most)
-    { x: 13.8, y: 24.5 }, // pos 1
-    { x: 23.8, y: 15.2 }, // pos 2
-    { x: 35.2, y: 9.2 }, // pos 3
-    { x: 50.0, y: 5.6 }, // pos 4 (TOP APEX CENTER - Active Item)
-    { x: 64.8, y: 9.2 }, // pos 5
-    { x: 76.2, y: 15.2 }, // pos 6
-    { x: 86.2, y: 24.5 }, // pos 7
-    { x: 93.2, y: 36.5 }  // pos 8 (right-most)
-  ]
-
-  /* ── 13 Dynamic Orbital Arc Slots (Slots 0 to 8 visible on arc; -2,-1 and 9,10 are entry/exit buffers) ── */
-  const ARC_SLOTS = [
-    { slotIdx: -2, x: -0.2, y: 66.0, opacity: 0, scale: 0.65 },
-    { slotIdx: -1, x: 2.2, y: 50.5, opacity: 0, scale: 0.78 },
-    { slotIdx: 0, x: 6.8, y: 36.5, opacity: 0.88, scale: 0.95 },
-    { slotIdx: 1, x: 13.8, y: 24.5, opacity: 0.92, scale: 1.0 },
-    { slotIdx: 2, x: 23.8, y: 15.2, opacity: 0.96, scale: 1.0 },
-    { slotIdx: 3, x: 35.2, y: 9.2, opacity: 0.98, scale: 1.04 },
-    { slotIdx: 4, x: 50.0, y: 5.6, opacity: 1.0, scale: 1.18 }, // TOP APEX ACTIVE
-    { slotIdx: 5, x: 64.8, y: 9.2, opacity: 0.98, scale: 1.04 },
-    { slotIdx: 6, x: 76.2, y: 15.2, opacity: 0.96, scale: 1.0 },
-    { slotIdx: 7, x: 86.2, y: 24.5, opacity: 0.92, scale: 1.0 },
-    { slotIdx: 8, x: 93.2, y: 36.5, opacity: 0.88, scale: 0.95 },
-    { slotIdx: 9, x: 97.8, y: 50.5, opacity: 0, scale: 0.78 },
-    { slotIdx: 10, x: 100.2, y: 66.0, opacity: 0, scale: 0.65 }
-  ]
-
   /* ── Waveform Audio Bars Heights (Both Sides Photorealistic Audio Spectrum) ── */
   const leftWaveform = [14, 22, 38, 55, 78, 62, 105, 84, 136, 112, 158, 126, 145, 96, 128, 88, 110, 75, 95, 68, 85, 58, 76, 50, 68, 44, 58, 38, 48, 32, 26, 18, 14, 10]
   const rightWaveform = [10, 14, 18, 26, 32, 48, 38, 58, 44, 68, 50, 76, 58, 85, 68, 95, 75, 110, 88, 128, 96, 145, 126, 158, 112, 136, 84, 105, 62, 78, 55, 38, 22, 14]
@@ -315,22 +247,6 @@ export function TechnicalSupportServicesShowcase({ onClose, onHome }) {
     const y2 = pat.map((m) => (502 + h * m).toFixed(1)).join(';')
     return { y1, y2 }
   }
-
-  /* ── Connecting SVG Arc Path in 1024x768 viewBox ── */
-  const vbW = 1024
-  const vbH = 768
-  const arcPts = arcNodes.map((n) => ({
-    x: (n.x / 100) * vbW,
-    y: (n.y / 100) * vbH
-  }))
-
-  const arcD = arcPts.reduce((acc, p, i) => {
-    if (i === 0) return `M ${p.x} ${p.y}`
-    const prev = arcPts[i - 1]
-    const cx = (prev.x + p.x) / 2
-    const cy = Math.min(prev.y, p.y) - 15
-    return `${acc} Q ${cx} ${cy} ${p.x} ${p.y}`
-  }, '')
 
   return (
     <div

@@ -24,7 +24,6 @@ import {
 import {
   soundWaveFooterData,
   communityAvatars,
-  neonPalette as NEON_PALETTE,
   productLinks as defaultProductLinks,
   companyLinks as defaultCompanyLinks,
   supportLinks as defaultSupportLinks

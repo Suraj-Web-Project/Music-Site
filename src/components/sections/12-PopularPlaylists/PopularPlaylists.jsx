@@ -29,24 +29,25 @@ export function TrophyShowcase({
   const stemPath = "M 452 615 L 572 615 L 572 830 L 452 830 Z";
 
   return (
-    <div
-      ref={trophyRef}
-      className={`trophy-load-wrapper ${inView ? 'is-in-view' : ''} ${className}`}
-      style={{
-        '--trophy-size': sizeStyle,
-        ...style,
-      }}
-      role="region"
-      aria-label={`${headingText || 'Trophy'} - Award Card`}
-      {...props}
-    >
-      {/* 1. Trophy Vector SVG */}
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 1024 1024"
-        className="trophy-svg-root"
-        aria-hidden="true"
+    <div className="w-full flex flex-col items-center justify-center">
+      <div
+        ref={trophyRef}
+        className={`trophy-load-wrapper ${inView ? 'is-in-view' : ''} ${className}`}
+        style={{
+          '--trophy-size': sizeStyle,
+          ...style,
+        }}
+        role="region"
+        aria-label={`${headingText || 'Trophy'} - Award Card`}
+        {...props}
       >
+        {/* 1. Trophy Vector SVG */}
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 1024 1024"
+          className="trophy-svg-root"
+          aria-hidden="true"
+        >
         <defs>
           {/* Lighting & Bloom Filters */}
           <filter id="bloom-large" x="-30%" y="-30%" width="160%" height="160%">
@@ -559,7 +560,41 @@ export function TrophyShowcase({
             transform: scale(1) rotate(90deg);
           }
         }
+
+        @media (max-width: 767px) {
+          .trophy-content-overlay {
+            display: none !important;
+          }
+          .trophy-load-wrapper {
+            width: min(84vw, 320px) !important;
+            height: min(84vw, 320px) !important;
+            margin-bottom: 0.25rem;
+          }
+        }
+
+        @media (min-width: 768px) {
+          .trophy-content-overlay {
+            display: flex !important;
+          }
+        }
       `}</style>
+      </div>
+
+      {/* 4. Dedicated Mobile Content Card (Visible only on < 768px, Hidden on md+) */}
+      <div className="md:hidden w-full max-w-[340px] px-4 py-3.5 mt-2 rounded-2xl bg-white/85 backdrop-blur-md border border-purple-200/80 shadow-[0_8px_25px_rgba(168,85,247,0.1)] text-center flex flex-col items-center animate-heading-load">
+        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-gradient-to-r from-purple-100 to-pink-100 border border-purple-200 text-purple-700 text-xs font-bold mb-2 shadow-2xs">
+          <span>🏆</span>
+          <span className="tracking-wider uppercase text-[11px] font-extrabold">{headingText || 'Popular Playlists'}</span>
+        </div>
+        <p className="text-xs text-slate-700 font-medium leading-relaxed px-1">
+          {descriptionText}
+        </p>
+        <div className="flex flex-wrap items-center justify-center gap-1.5 mt-2.5 pt-2 border-t border-purple-100/90 w-full text-[10px] text-purple-600 font-semibold">
+          <span className="px-2 py-0.5 rounded-md bg-purple-50 border border-purple-100">✦ Unique Listeners</span>
+          <span className="px-2 py-0.5 rounded-md bg-pink-50 border border-pink-100">✦ Stream Velocity</span>
+          <span className="px-2 py-0.5 rounded-md bg-violet-50 border border-violet-100">✦ Global Trends</span>
+        </div>
+      </div>
     </div>
   );
 }
@@ -585,7 +620,7 @@ export const PopularPlaylists = () => {
 
       {/* 3D Holographic Iridescent Trophy Showcase */}
       <div
-        className="relative w-full rounded-2xl sm:rounded-3xl border border-purple-200/80 shadow-[0_12px_40px_rgba(168,85,247,0.12)] p-2 sm:p-6 md:p-10 flex flex-col items-center justify-center overflow-hidden"
+        className="relative w-full rounded-2xl sm:rounded-3xl border border-purple-200/80 shadow-[0_12px_40px_rgba(168,85,247,0.12)] p-4 sm:p-6 md:p-10 flex flex-col items-center justify-center overflow-hidden"
         style={{
           background: 'radial-gradient(circle at 50% 35%, #ffffff 0%, #f4e9fd 45%, #e2cbfb 85%, #dcbeff 100%)'
         }}

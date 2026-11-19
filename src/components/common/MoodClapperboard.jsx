@@ -135,17 +135,6 @@ export const MoodClapperboard = ({
     triggerClap();
   };
 
-  const moods = [
-    { id: 'Happy', label: 'Happy', x: 78, y: 490, w: 212, h: 194 },
-    { id: 'Chill', label: 'Chill', x: 300, y: 490, w: 210, h: 194 },
-    { id: 'Energetic', label: 'Energetic', x: 518, y: 490, w: 210, h: 194 },
-    { id: 'Romantic', label: 'Romantic', x: 736, y: 490, w: 212, h: 194 },
-    { id: 'Focus', label: 'Focus', x: 78, y: 702, w: 212, h: 196 },
-    { id: 'Sad', label: 'Sad', x: 300, y: 702, w: 210, h: 196 },
-    { id: 'Relax', label: 'Relax', x: 518, y: 702, w: 210, h: 196 },
-    { id: 'Workout', label: 'Workout', x: 736, y: 702, w: 212, h: 196 },
-  ];
-
   return (
     <div ref={boardRef} className={`relative inline-block select-none overflow-visible ${className}`}>
       <svg

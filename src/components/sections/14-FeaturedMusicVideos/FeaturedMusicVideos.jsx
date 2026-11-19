@@ -1426,11 +1426,10 @@ function CentralMusicDashboard({
                 setSlideDirection(idx > currentTrackIdx ? 'next' : 'prev');
                 setCurrentTrackIdx(idx);
               }}
-              className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
-                currentTrackIdx === idx
+              className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${currentTrackIdx === idx
                   ? 'w-8 bg-gradient-to-r from-pink-500 to-amber-300 shadow-[0_0_8px_#ff26df]'
                   : 'w-2 bg-purple-900/50 hover:bg-purple-700'
-              }`}
+                }`}
               title={`Jump to Page ${idx + 1}`}
             />
           ))}
@@ -1440,9 +1439,8 @@ function CentralMusicDashboard({
       {/* ── MAIN CENTERPIECE: ANIMATED PAGE CONTENT (WITH TRANSITIONS) ── */}
       <div
         key={currentTrackIdx}
-        className={`flex items-center gap-7 my-auto z-10 ${
-          slideDirection === 'next' ? 'page-anim-next' : 'page-anim-prev'
-        }`}
+        className={`flex items-center gap-7 my-auto z-10 ${slideDirection === 'next' ? 'page-anim-next' : 'page-anim-prev'
+          }`}
       >
         {/* PAGE 1: VINYL RECORD VISUAL */}
         {currentTrackIdx === 0 && (
@@ -1629,7 +1627,12 @@ function CentralMusicDashboard({
 /* ─────────────────────────────────────────────────────────────────────────────
    8B. MOBILE-OPTIMIZED FEATURED MUSIC VIDEO SHOWCASE (< 768px BREAKPOINT)
    Preserves 100% of the royal purple & gold 3D saxophone frame aesthetic
-   with legible fonts, comfortable touch targets, and high-performance animations.
+   matching Image 1 with:
+   - Full Top Plaque with golden crown, ♫ note, and pink equalizers
+   - Complete flanking Left & Right Saxophones (mouthpiece to bell horn, zero clipping)
+   - Grand 3D royal purple & gold chassis with golden ribbon and neon magenta glow
+   - Translucent frosted glass interactive music dashboard with spinning vinyl record
+   - Full Bottom Wave Platform with gold ribbon, neon slot, equalizers, and 3D treble clef medallion
    ───────────────────────────────────────────────────────────────────────────── */
 function MobileFeaturedMusicVideoShowcase({
   currentTrackIdx,
@@ -1643,255 +1646,283 @@ function MobileFeaturedMusicVideoShowcase({
   const pageProgressPercent = ((currentTrackIdx + 1) / TRACKS.length) * 100;
 
   return (
-    <div className="w-full max-w-[430px] mx-auto px-1 py-1 relative select-none font-sans">
+    <div className="w-full max-w-[430px] mx-auto px-2 py-2 relative select-none font-sans">
       {/* Ambient Radial Glow Aura */}
-      <div className="absolute inset-0 bg-gradient-to-r from-fuchsia-600/15 via-purple-600/20 to-amber-500/15 blur-2xl -z-10 rounded-3xl" />
+      <div className="absolute inset-0 bg-gradient-to-r from-fuchsia-600/20 via-purple-600/25 to-amber-500/20 blur-3xl -z-10 rounded-3xl" />
 
-      {/* ── TOP ORNATE CROWN WITH SAXOPHONES & GOLD PLAQUE ── */}
+      {/* ── 1. TOP ORNATE CROWN WITH COMPLETE FLANKING SAXOPHONES & GOLD PLAQUE ── */}
       <div className="relative w-full flex justify-center -mb-5 z-20 pointer-events-none">
         <svg
-          viewBox="180 25 1240 215"
-          className="w-full max-w-[390px] h-auto drop-shadow-[0_10px_20px_rgba(20,0,35,0.6)]"
+          viewBox="370 15 860 175"
+          className="w-full max-w-[410px] h-auto drop-shadow-[0_12px_24px_rgba(20,0,35,0.7)]"
           preserveAspectRatio="xMidYMid meet"
           role="presentation"
         >
           <FrameDefinitions />
-          {/* Left Flanking Saxophone Motif */}
-          <g transform="translate(190, -250) scale(0.68)" opacity="0.95">
+
+          {/* Left Flanking Full Saxophone (Zero Clipping: Neck to Bell Horn) */}
+          <g transform="translate(365, -77) scale(0.32)">
             <SaxophoneLeft />
           </g>
-          {/* Central Ornate Gold & Purple Plaque with ♫ */}
+
+          {/* Central Ornate Gold & Purple Plaque with Beamed ♫ & Equalizers */}
           <TopMusicPanel />
-          {/* Right Flanking Saxophone Motif */}
-          <g transform="translate(90, -250) scale(0.68)" opacity="0.95">
-            <SaxophoneRight />
+
+          {/* Right Flanking Full Saxophone (Exact Mirrored Symmetrical Companion) */}
+          <g transform="translate(1600, 0) scale(-1, 1)">
+            <g transform="translate(365, -77) scale(0.32)">
+              <SaxophoneLeft />
+            </g>
           </g>
-          {/* Starburst Lens Flares */}
-          <use href="#starGlint" transform="translate(530, 95) scale(0.85)" className="gold-glint" />
-          <use href="#starGlint" transform="translate(1070, 95) scale(0.85)" className="gold-glint" />
+
+          {/* Plaque Shoulder Starburst Lens Flares */}
+          <use href="#starGlint" transform="translate(535, 95) scale(0.85)" className="gold-glint" />
+          <use href="#starGlint" transform="translate(1065, 95) scale(0.85)" className="gold-glint" />
         </svg>
       </div>
 
-      {/* ── MAIN MOBILE GLASS CHASSIS (CARD BODY) ── */}
-      <div className="relative w-full rounded-3xl bg-gradient-to-b from-[#28023f]/95 via-[#18002b]/95 to-[#240038]/95 border-2 border-purple-400/60 p-4 sm:p-5 shadow-[0_16px_45px_rgba(40,4,70,0.55),0_0_25px_rgba(239,53,237,0.22)] backdrop-blur-xl overflow-hidden z-10">
-        {/* Subtle Neon Magenta Inner Rim */}
-        <div className="absolute inset-0 rounded-3xl border border-pink-400/30 pointer-events-none" />
-        <div className="absolute -top-24 -left-24 w-48 h-48 bg-pink-500/15 rounded-full blur-2xl pointer-events-none" />
-        <div className="absolute -bottom-24 -right-24 w-48 h-48 bg-amber-500/15 rounded-full blur-2xl pointer-events-none" />
+      {/* ── 2. 3D ROYAL PURPLE & GOLD FRAME CHASSIS (MATCHING IMAGE 1 DESKTOP) ── */}
+      <div className="relative w-full rounded-[28px] p-[4px] bg-gradient-to-b from-[#8517cc] via-[#4f0882] to-[#250242] shadow-[0_20px_50px_rgba(40,4,70,0.55),0_0_30px_rgba(239,53,237,0.22)] z-10">
+        {/* Layer B: Glossy Purple Face */}
+        <div className="rounded-[25px] p-[3px] bg-gradient-to-b from-[#a32cf0] via-[#520974] to-[#2d024e]">
+          {/* Layer C: Polished Golden Ribbon Trim with Specular White Shine */}
+          <div className="rounded-[22px] p-[2.5px] bg-gradient-to-b from-[#fffce4] via-[#ffd34f] to-[#703702] relative">
+            <div className="absolute inset-0 rounded-[22px] border border-white/70 pointer-events-none" />
 
-        {/* ── 1. STATUS BAR / TELEMETRY HEADER ── */}
-        <div className="flex items-center justify-between border-b border-purple-500/25 pb-3 mb-3.5 relative z-10">
-          <div className="flex items-center gap-2">
-            <span className="relative flex h-2.5 w-2.5">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-pink-500 opacity-75" />
-              <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-pink-600 shadow-[0_0_10px_#ff25d2]" />
-            </span>
-            <span className="text-[11px] font-black tracking-widest text-purple-200 uppercase drop-shadow-sm">
-              Music Suite
-            </span>
-            <span className="text-[10px] px-2 py-0.5 rounded-full bg-purple-900/90 border border-amber-400/50 text-amber-300 font-mono font-bold tracking-wider shadow-sm">
-              {track.genre}
-            </span>
-          </div>
+            {/* Layer D: Radiant Continuous Neon Magenta Rim */}
+            <div className="rounded-[20px] p-[2px] bg-[#1a012b] relative overflow-hidden shadow-[0_0_15px_#ff26df,inset_0_0_12px_rgba(255,38,223,0.35)]">
+              <div className="absolute inset-0 rounded-[20px] border-2 border-[#ff26df]/90 pointer-events-none frame-neon" />
 
-          {/* Step Dots */}
-          <div className="flex items-center gap-1.5">
-            {[0, 1, 2].map((idx) => (
-              <button
-                key={idx}
-                type="button"
-                onClick={() => {
-                  setSlideDirection(idx > currentTrackIdx ? 'next' : 'prev');
-                  setCurrentTrackIdx(idx);
-                }}
-                className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
-                  currentTrackIdx === idx
-                    ? 'w-6 bg-gradient-to-r from-pink-500 to-amber-300 shadow-[0_0_8px_#ff26df]'
-                    : 'w-2 bg-purple-800/60 hover:bg-purple-600'
-                }`}
-                title={`Go to Page ${idx + 1}`}
-                aria-label={`Go to Page ${idx + 1}`}
-              />
-            ))}
-          </div>
-        </div>
+              {/* ── 3. FROSTED TRANSLUCENT STUDIO SCREEN BACKING (IMAGE 1 GLASS STYLE) ── */}
+              <div className="relative rounded-[18px] bg-gradient-to-b from-purple-950/45 via-[#230238]/40 to-purple-950/50 backdrop-blur-xl p-4 sm:p-5 overflow-hidden">
+                {/* Ambient Soft Neon Highlights inside Screen */}
+                <div className="absolute -top-16 -left-16 w-36 h-36 bg-pink-500/15 rounded-full blur-2xl pointer-events-none" />
+                <div className="absolute -bottom-16 -right-16 w-36 h-36 bg-amber-500/15 rounded-full blur-2xl pointer-events-none" />
 
-        {/* ── 2. ANIMATED TRACK SHOWCASE ── */}
-        <div
-          key={currentTrackIdx}
-          className={`flex items-center gap-3.5 sm:gap-4 my-2 relative z-10 ${
-            slideDirection === 'next' ? 'page-anim-next' : 'page-anim-prev'
-          }`}
-        >
-          {/* Track Artwork / Visual */}
-          {currentTrackIdx === 0 && (
-            <div className="relative flex-shrink-0">
-              <div className="absolute -inset-1.5 rounded-full bg-gradient-to-tr from-pink-500 via-purple-600 to-amber-400 opacity-70 blur-sm animate-pulse" />
-              <div
-                className="w-20 h-20 sm:w-22 sm:h-22 rounded-full relative shadow-xl flex items-center justify-center border-2 border-amber-300/80 bg-[#160026] animate-spin"
-                style={{ animationDuration: '6s' }}
-              >
-                <div className="absolute inset-1.5 rounded-full border border-purple-400/30" />
-                <div className="absolute inset-3 rounded-full border border-purple-400/20" />
-                <div className="absolute inset-4.5 rounded-full border border-purple-300/30" />
-                <div className="absolute inset-0 rounded-full bg-[conic-gradient(from_0deg,transparent_0deg,rgba(255,255,255,0.2)_60deg,transparent_120deg,rgba(255,255,255,0.2)_240deg,transparent_300deg)] pointer-events-none" />
-                <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-amber-600 via-yellow-400 to-amber-600 border border-amber-200 shadow flex items-center justify-center">
-                  <div className="w-6 h-6 rounded-full bg-gradient-to-b from-purple-900 to-[#25013d] border border-amber-300/60 flex items-center justify-center">
-                    <svg className="w-3.5 h-3.5 text-amber-300 drop-shadow" viewBox="0 0 24 24" fill="currentColor">
-                      <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z" />
-                    </svg>
+                {/* Status Bar / Telemetry Header */}
+                <div className="flex items-center justify-between border-b border-purple-400/25 pb-2.5 mb-3 relative z-10">
+                  <div className="flex items-center gap-2">
+                    <span className="relative flex h-2.5 w-2.5">
+                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-pink-500 opacity-75" />
+                      <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-pink-600 shadow-[0_0_10px_#ff25d2]" />
+                    </span>
+                    <span className="text-[11px] font-black tracking-widest text-purple-100 uppercase drop-shadow-sm">
+                      Interactive Music Suite
+                    </span>
+                    <span className="text-[10px] px-2 py-0.5 rounded-full bg-purple-900/90 border border-amber-400/50 text-amber-300 font-mono font-bold tracking-wider shadow-sm">
+                      {track.genre}
+                    </span>
+                  </div>
+
+                  {/* Step Dots */}
+                  <div className="flex items-center gap-1.5">
+                    {[0, 1, 2].map((idx) => (
+                      <button
+                        key={idx}
+                        type="button"
+                        onClick={() => {
+                          setSlideDirection(idx > currentTrackIdx ? 'next' : 'prev');
+                          setCurrentTrackIdx(idx);
+                        }}
+                        className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${currentTrackIdx === idx
+                            ? 'w-6 bg-gradient-to-r from-pink-500 to-amber-300 shadow-[0_0_8px_#ff26df]'
+                            : 'w-2 bg-purple-800/60 hover:bg-purple-600'
+                          }`}
+                        title={`Go to Page ${idx + 1}`}
+                        aria-label={`Go to Page ${idx + 1}`}
+                      />
+                    ))}
                   </div>
                 </div>
-                <div className="absolute w-2 h-2 rounded-full bg-black border border-amber-200/80" />
-              </div>
-            </div>
-          )}
 
-          {currentTrackIdx === 1 && (
-            <div className="relative flex-shrink-0">
-              <div className="absolute -inset-1.5 rounded-full bg-gradient-to-tr from-yellow-400 via-amber-500 to-pink-500 opacity-70 blur-sm animate-pulse" />
-              <div className="w-20 h-20 sm:w-22 sm:h-22 rounded-full relative shadow-xl flex items-center justify-center border-2 border-amber-200 bg-gradient-to-br from-[#2a043d] via-[#150024] to-[#3b0852]">
-                <div className="absolute inset-1.5 rounded-full border border-amber-400/40 animate-ping" style={{ animationDuration: '3s' }} />
-                <div className="absolute inset-3 rounded-full border border-pink-400/30" />
-                <div className="w-9 h-9 rounded-full bg-gradient-to-tr from-amber-500 via-yellow-200 to-amber-600 border-2 border-white shadow flex items-center justify-center">
-                  <svg className="w-4.5 h-4.5 text-[#25013d] drop-shadow" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z" />
-                  </svg>
+                {/* Animated Track Showcase */}
+                <div
+                  key={currentTrackIdx}
+                  className={`flex items-center gap-3.5 sm:gap-4 my-2 relative z-10 ${slideDirection === 'next' ? 'page-anim-next' : 'page-anim-prev'
+                    }`}
+                >
+                  {/* Track Artwork / Visual */}
+                  {currentTrackIdx === 0 && (
+                    <div className="relative flex-shrink-0">
+                      <div className="absolute -inset-1.5 rounded-full bg-gradient-to-tr from-pink-500 via-purple-600 to-amber-400 opacity-70 blur-sm animate-pulse" />
+                      <div
+                        className="w-20 h-20 sm:w-22 sm:h-22 rounded-full relative shadow-xl flex items-center justify-center border-2 border-amber-300/80 bg-[#160026] animate-spin"
+                        style={{ animationDuration: '6s' }}
+                      >
+                        <div className="absolute inset-1.5 rounded-full border border-purple-400/30" />
+                        <div className="absolute inset-3 rounded-full border border-purple-400/20" />
+                        <div className="absolute inset-4.5 rounded-full border border-purple-300/30" />
+                        <div className="absolute inset-0 rounded-full bg-[conic-gradient(from_0deg,transparent_0deg,rgba(255,255,255,0.2)_60deg,transparent_120deg,rgba(255,255,255,0.2)_240deg,transparent_300deg)] pointer-events-none" />
+                        <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-amber-600 via-yellow-400 to-amber-600 border border-amber-200 shadow flex items-center justify-center">
+                          <div className="w-6 h-6 rounded-full bg-gradient-to-b from-purple-900 to-[#25013d] border border-amber-300/60 flex items-center justify-center">
+                            <svg className="w-3.5 h-3.5 text-amber-300 drop-shadow" viewBox="0 0 24 24" fill="currentColor">
+                              <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z" />
+                            </svg>
+                          </div>
+                        </div>
+                        <div className="absolute w-2 h-2 rounded-full bg-black border border-amber-200/80" />
+                      </div>
+                    </div>
+                  )}
+
+                  {currentTrackIdx === 1 && (
+                    <div className="relative flex-shrink-0">
+                      <div className="absolute -inset-1.5 rounded-full bg-gradient-to-tr from-yellow-400 via-amber-500 to-pink-500 opacity-70 blur-sm animate-pulse" />
+                      <div className="w-20 h-20 sm:w-22 sm:h-22 rounded-full relative shadow-xl flex items-center justify-center border-2 border-amber-200 bg-gradient-to-br from-[#2a043d] via-[#150024] to-[#3b0852]">
+                        <div className="absolute inset-1.5 rounded-full border border-amber-400/40 animate-ping" style={{ animationDuration: '3s' }} />
+                        <div className="absolute inset-3 rounded-full border border-pink-400/30" />
+                        <div className="w-9 h-9 rounded-full bg-gradient-to-tr from-amber-500 via-yellow-200 to-amber-600 border-2 border-white shadow flex items-center justify-center">
+                          <svg className="w-4.5 h-4.5 text-[#25013d] drop-shadow" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z" />
+                          </svg>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+
+                  {currentTrackIdx === 2 && (
+                    <div className="relative flex-shrink-0">
+                      <div className="absolute -inset-1.5 rounded-full bg-gradient-to-tr from-pink-500 via-purple-500 to-cyan-400 opacity-70 blur-sm animate-pulse" />
+                      <div className="w-20 h-20 sm:w-22 sm:h-22 rounded-full relative shadow-xl flex items-center justify-center border-2 border-pink-300 bg-gradient-to-tr from-[#1b002c] via-[#35024e] to-[#140022]">
+                        <div
+                          className="absolute inset-1 rounded-full border-2 border-t-pink-400 border-r-amber-300 border-b-transparent border-l-transparent animate-spin"
+                          style={{ animationDuration: '4s' }}
+                        />
+                        <div
+                          className="absolute inset-2.5 rounded-full border-2 border-b-cyan-300 border-l-purple-400 border-t-transparent border-r-transparent animate-spin"
+                          style={{ animationDuration: '5s', animationDirection: 'reverse' }}
+                        />
+                        <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-amber-500 via-yellow-200 to-amber-500 border border-white shadow flex items-center justify-center">
+                          <span className="text-sm font-black text-[#25013d]">𝄞</span>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Track Details */}
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-center gap-1.5 mb-0.5">
+                      <span className="text-[10px] font-extrabold tracking-widest uppercase text-pink-400 drop-shadow-[0_0_8px_rgba(255,38,223,0.5)]">
+                        {track.pageName}
+                      </span>
+                      <span className="text-purple-400 text-xs">•</span>
+                      <span className="text-[11px] text-purple-200 font-semibold tracking-wide truncate">
+                        {track.genre}
+                      </span>
+                    </div>
+
+                    <h3 className="text-base sm:text-lg font-black tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-white via-purple-100 to-amber-200 leading-tight drop-shadow-sm truncate">
+                      {track.title}
+                    </h3>
+
+                    <p className="text-xs text-purple-200/90 font-medium tracking-wide mt-1 line-clamp-2 leading-relaxed">
+                      {track.movement}
+                    </p>
+
+                    <p className="text-[11px] text-amber-300 font-bold tracking-wider uppercase mt-1 truncate">
+                      {track.artist}
+                    </p>
+                  </div>
+                </div>
+
+                {/* Interactive Progress Bar */}
+                <div className="mt-3.5 mb-3 pt-2 border-t border-purple-500/20 relative z-10">
+                  <div className="flex items-center gap-2.5">
+                    <span className="text-[11px] font-mono text-purple-200 font-bold w-12 text-right">
+                      Page {currentTrackIdx + 1}
+                    </span>
+
+                    <div
+                      className="flex-1 h-2.5 bg-purple-950/80 rounded-full overflow-hidden cursor-pointer relative border border-purple-400/40"
+                      onClick={(e) => {
+                        const rect = e.currentTarget.getBoundingClientRect();
+                        const clickX = e.clientX - rect.left;
+                        const ratio = clickX / rect.width;
+                        if (ratio < 0.35) {
+                          setSlideDirection('prev');
+                          setCurrentTrackIdx(0);
+                        } else if (ratio < 0.7) {
+                          setSlideDirection(currentTrackIdx > 1 ? 'prev' : 'next');
+                          setCurrentTrackIdx(1);
+                        } else {
+                          setSlideDirection('next');
+                          setCurrentTrackIdx(2);
+                        }
+                      }}
+                      title="Tap progress bar to switch pages"
+                    >
+                      <div
+                        className="h-full bg-gradient-to-r from-pink-500 via-purple-500 to-amber-300 rounded-full transition-all duration-500 ease-out relative shadow-[0_0_10px_#ff26df]"
+                        style={{ width: `${pageProgressPercent}%` }}
+                      >
+                        <div className="absolute right-0 top-1/2 -translate-y-1/2 w-3.5 h-3.5 bg-white rounded-full shadow-[0_0_8px_#ffffff]" />
+                      </div>
+                    </div>
+
+                    <span className="text-[11px] font-mono text-purple-300 font-bold w-12">
+                      3 Pages
+                    </span>
+                  </div>
+                </div>
+
+                {/* Touch-Friendly Controls Ribbon */}
+                <div className="flex items-center justify-between gap-1.5 relative z-10">
+                  {/* PREVIOUS Button */}
+                  <button
+                    type="button"
+                    onClick={handlePrev}
+                    className="flex items-center gap-1.5 px-3.5 py-2.5 rounded-xl bg-gradient-to-r from-purple-900/90 to-purple-800/90 active:scale-95 text-white font-bold text-xs tracking-wider border border-purple-400/50 shadow-md cursor-pointer transition-all"
+                    title="Previous Page"
+                  >
+                    <svg className="w-3.5 h-3.5 fill-current text-pink-300 pointer-events-none" viewBox="0 0 24 24">
+                      <path d="M6 6h2v12H6zm3.5 6l8.5 6V6z" />
+                    </svg>
+                    <span className="pointer-events-none">PREV</span>
+                  </button>
+
+                  {/* WIDE GOLDEN CENTER BUTTON */}
+                  <button
+                    type="button"
+                    onClick={handleNext}
+                    className="flex-1 py-2.5 px-2 rounded-full bg-gradient-to-tr from-amber-500 via-yellow-300 to-amber-500 text-[#200136] font-black text-xs tracking-wider uppercase shadow-[0_0_16px_rgba(255,190,0,0.85)] border-2 border-white/90 active:scale-95 transition-all flex items-center justify-center cursor-pointer truncate"
+                    title="Advance to next page"
+                  >
+                    <span className="font-extrabold tracking-wider text-[12px] drop-shadow-sm text-[#200136] truncate pointer-events-none">
+                      {track.pageStep || track.pageName}
+                    </span>
+                  </button>
+
+                  {/* NEXT Button */}
+                  <button
+                    type="button"
+                    onClick={handleNext}
+                    className="flex items-center gap-1.5 px-3.5 py-2.5 rounded-xl bg-gradient-to-r from-purple-800/90 to-purple-900/90 active:scale-95 text-white font-bold text-xs tracking-wider border border-purple-400/50 shadow-md cursor-pointer transition-all"
+                    title="Next Page"
+                  >
+                    <span className="pointer-events-none">NEXT</span>
+                    <svg className="w-3.5 h-3.5 fill-current text-pink-300 pointer-events-none" viewBox="0 0 24 24">
+                      <path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z" />
+                    </svg>
+                  </button>
                 </div>
               </div>
             </div>
-          )}
-
-          {currentTrackIdx === 2 && (
-            <div className="relative flex-shrink-0">
-              <div className="absolute -inset-1.5 rounded-full bg-gradient-to-tr from-pink-500 via-purple-500 to-cyan-400 opacity-70 blur-sm animate-pulse" />
-              <div className="w-20 h-20 sm:w-22 sm:h-22 rounded-full relative shadow-xl flex items-center justify-center border-2 border-pink-300 bg-gradient-to-tr from-[#1b002c] via-[#35024e] to-[#140022]">
-                <div
-                  className="absolute inset-1 rounded-full border-2 border-t-pink-400 border-r-amber-300 border-b-transparent border-l-transparent animate-spin"
-                  style={{ animationDuration: '4s' }}
-                />
-                <div
-                  className="absolute inset-2.5 rounded-full border-2 border-b-cyan-300 border-l-purple-400 border-t-transparent border-r-transparent animate-spin"
-                  style={{ animationDuration: '5s', animationDirection: 'reverse' }}
-                />
-                <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-amber-500 via-yellow-200 to-amber-500 border border-white shadow flex items-center justify-center">
-                  <span className="text-sm font-black text-[#25013d]">𝄞</span>
-                </div>
-              </div>
-            </div>
-          )}
-
-          {/* Track Details */}
-          <div className="flex-1 min-w-0">
-            <div className="flex items-center gap-1.5 mb-0.5">
-              <span className="text-[10px] font-extrabold tracking-widest uppercase text-pink-400 drop-shadow-[0_0_8px_rgba(255,38,223,0.5)]">
-                {track.pageName}
-              </span>
-            </div>
-
-            <h3 className="text-base sm:text-lg font-black tracking-wide text-white leading-tight drop-shadow-sm truncate">
-              {track.title}
-            </h3>
-
-            <p className="text-xs text-purple-200/90 font-medium tracking-wide mt-1 line-clamp-2 leading-relaxed">
-              {track.movement}
-            </p>
-
-            <p className="text-[11px] text-amber-300 font-bold tracking-wider uppercase mt-1 truncate">
-              {track.artist}
-            </p>
           </div>
-        </div>
-
-        {/* ── 3. INTERACTIVE PROGRESS BAR ── */}
-        <div className="mt-3.5 mb-3 pt-2 border-t border-purple-500/20 relative z-10">
-          <div className="flex items-center gap-2.5">
-            <span className="text-[11px] font-mono text-purple-200 font-bold w-12 text-right">
-              Page {currentTrackIdx + 1}
-            </span>
-
-            <div
-              className="flex-1 h-2.5 bg-purple-950/80 rounded-full overflow-hidden cursor-pointer relative border border-purple-400/40"
-              onClick={(e) => {
-                const rect = e.currentTarget.getBoundingClientRect();
-                const clickX = e.clientX - rect.left;
-                const ratio = clickX / rect.width;
-                if (ratio < 0.35) {
-                  setSlideDirection('prev');
-                  setCurrentTrackIdx(0);
-                } else if (ratio < 0.7) {
-                  setSlideDirection(currentTrackIdx > 1 ? 'prev' : 'next');
-                  setCurrentTrackIdx(1);
-                } else {
-                  setSlideDirection('next');
-                  setCurrentTrackIdx(2);
-                }
-              }}
-              title="Tap progress bar to switch pages"
-            >
-              <div
-                className="h-full bg-gradient-to-r from-pink-500 via-purple-500 to-amber-300 rounded-full transition-all duration-500 ease-out relative shadow-[0_0_10px_#ff26df]"
-                style={{ width: `${pageProgressPercent}%` }}
-              >
-                <div className="absolute right-0 top-1/2 -translate-y-1/2 w-3.5 h-3.5 bg-white rounded-full shadow-[0_0_8px_#ffffff]" />
-              </div>
-            </div>
-
-            <span className="text-[11px] font-mono text-purple-300 font-bold w-12">
-              3 Pages
-            </span>
-          </div>
-        </div>
-
-        {/* ── 4. TOUCH-FRIENDLY CONTROLS RIBBON ── */}
-        <div className="flex items-center justify-between gap-1.5 relative z-10">
-          {/* PREVIOUS Button */}
-          <button
-            type="button"
-            onClick={handlePrev}
-            className="flex items-center gap-1.5 px-3.5 py-2.5 rounded-xl bg-gradient-to-r from-purple-900/90 to-purple-800/90 active:scale-95 text-white font-bold text-xs tracking-wider border border-purple-400/50 shadow-md cursor-pointer transition-all"
-            title="Previous Page"
-          >
-            <svg className="w-3.5 h-3.5 fill-current text-pink-300 pointer-events-none" viewBox="0 0 24 24">
-              <path d="M6 6h2v12H6zm3.5 6l8.5 6V6z" />
-            </svg>
-            <span className="pointer-events-none">PREV</span>
-          </button>
-
-          {/* WIDE GOLDEN CENTER BUTTON */}
-          <button
-            type="button"
-            onClick={handleNext}
-            className="flex-1 py-2.5 px-2 rounded-full bg-gradient-to-tr from-amber-500 via-yellow-300 to-amber-500 text-[#200136] font-black text-xs tracking-wider uppercase shadow-[0_0_16px_rgba(255,190,0,0.85)] border-2 border-white/90 active:scale-95 transition-all flex items-center justify-center cursor-pointer truncate"
-            title="Advance to next page"
-          >
-            <span className="font-extrabold tracking-wider text-[12px] drop-shadow-sm text-[#200136] truncate pointer-events-none">
-              {track.pageStep || track.pageName}
-            </span>
-          </button>
-
-          {/* NEXT Button */}
-          <button
-            type="button"
-            onClick={handleNext}
-            className="flex items-center gap-1.5 px-3.5 py-2.5 rounded-xl bg-gradient-to-r from-purple-800/90 to-purple-900/90 active:scale-95 text-white font-bold text-xs tracking-wider border border-purple-400/50 shadow-md cursor-pointer transition-all"
-            title="Next Page"
-          >
-            <span className="pointer-events-none">NEXT</span>
-            <svg className="w-3.5 h-3.5 fill-current text-pink-300 pointer-events-none" viewBox="0 0 24 24">
-              <path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z" />
-            </svg>
-          </button>
         </div>
       </div>
 
-      {/* ── 5. BOTTOM MEDALLION WITH 𝄞 ── */}
-      <div className="relative w-full flex justify-center -mt-4 z-20 pointer-events-none">
-        <div className="w-11 h-11 rounded-full bg-gradient-to-br from-[#9e2de8] via-[#5c0b94] to-[#130022] border-2 border-amber-300 flex items-center justify-center shadow-[0_0_18px_rgba(239,53,237,0.5)]">
-          <span className="text-xl font-serif text-amber-300 drop-shadow-[0_0_6px_rgba(255,215,0,0.85)]">
-            𝄞
-          </span>
-        </div>
+      {/* ── 4. BOTTOM ORNATE PLATFORM (PURPLE WAVE, EQUALIZERS & 3D TREBLE CLEF MEDALLION) ── */}
+      <div className="relative w-full flex justify-center -mt-6 z-20 pointer-events-none">
+        <svg
+          viewBox="40 655 1520 185"
+          className="w-full max-w-[420px] h-auto drop-shadow-[0_14px_28px_rgba(20,0,35,0.7)]"
+          preserveAspectRatio="xMidYMid meet"
+          role="presentation"
+        >
+          <FrameDefinitions />
+          {/* Full Bottom Music Panel from Desktop Rig */}
+          <BottomMusicPanel />
+        </svg>
       </div>
     </div>
   );
@@ -1938,14 +1969,14 @@ export function FeaturedMusicVideoShowcase({ className = '', style = {} }) {
           aria-label="Premium 3D Musical Decorative Frame in Royal Purple and Gold with Saxophones and Music Notes"
           xmlns="http://www.w3.org/2000/svg"
         >
-      {/* ── Reusable Definitions ── */}
-      <FrameDefinitions />
+          {/* ── Reusable Definitions ── */}
+          <FrameDefinitions />
 
-      {/* ── 1. MAIN OUTER 3D HEXAGONAL FRAME BEVELS & BORDERS ── */}
-      <g id="main-frame-chassis" filter="url(#frameShadowFilter)">
-        {/* Layer A: Base Structural Hexagonal Bevel */}
-        <path
-          d="M 520 120 
+          {/* ── 1. MAIN OUTER 3D HEXAGONAL FRAME BEVELS & BORDERS ── */}
+          <g id="main-frame-chassis" filter="url(#frameShadowFilter)">
+            {/* Layer A: Base Structural Hexagonal Bevel */}
+            <path
+              d="M 520 120 
              L 210 120 
              C 140 120, 80 178, 62 258 
              L 42 430 
@@ -1959,16 +1990,16 @@ export function FeaturedMusicVideoShowcase({ className = '', style = {} }) {
              L 1538 258 
              C 1520 178, 1460 120, 1390 120 
              L 1080 120"
-          fill="none"
-          stroke="url(#frameBevelGrad)"
-          strokeWidth="68"
-          strokeLinejoin="round"
-          strokeLinecap="round"
-        />
+              fill="none"
+              stroke="url(#frameBevelGrad)"
+              strokeWidth="68"
+              strokeLinejoin="round"
+              strokeLinecap="round"
+            />
 
-        {/* Layer B: Glossy Purple Face Layer */}
-        <path
-          d="M 515 120 
+            {/* Layer B: Glossy Purple Face Layer */}
+            <path
+              d="M 515 120 
              L 215 120 
              C 148 120, 90 176, 74 252 
              L 54 430 
@@ -1982,16 +2013,16 @@ export function FeaturedMusicVideoShowcase({ className = '', style = {} }) {
              L 1526 252 
              C 1510 176, 1452 120, 1385 120 
              L 1085 120"
-          fill="none"
-          stroke="url(#purpleFaceGrad)"
-          strokeWidth="48"
-          strokeLinejoin="round"
-          strokeLinecap="round"
-        />
+              fill="none"
+              stroke="url(#purpleFaceGrad)"
+              strokeWidth="48"
+              strokeLinejoin="round"
+              strokeLinecap="round"
+            />
 
-        {/* Layer C: Outer Polished Golden Trim */}
-        <path
-          d="M 510 88 
+            {/* Layer C: Outer Polished Golden Trim */}
+            <path
+              d="M 510 88 
              L 210 88 
              C 126 88, 54 156, 34 250 
              L 14 430 
@@ -2005,15 +2036,15 @@ export function FeaturedMusicVideoShowcase({ className = '', style = {} }) {
              L 1566 250 
              C 1546 156, 1474 88, 1390 88 
              L 1090 88"
-          fill="none"
-          stroke="url(#goldRibbonGrad)"
-          strokeWidth="11"
-          strokeLinejoin="round"
-          strokeLinecap="round"
-        />
-        {/* Specular White Line on Golden Trim */}
-        <path
-          d="M 510 84 
+              fill="none"
+              stroke="url(#goldRibbonGrad)"
+              strokeWidth="11"
+              strokeLinejoin="round"
+              strokeLinecap="round"
+            />
+            {/* Specular White Line on Golden Trim */}
+            <path
+              d="M 510 84 
              L 210 84 
              C 124 84, 52 154, 32 248 
              L 12 430 
@@ -2027,148 +2058,148 @@ export function FeaturedMusicVideoShowcase({ className = '', style = {} }) {
              L 1568 248 
              C 1548 154, 1476 84, 1390 84 
              L 1090 84"
-          fill="none"
-          stroke="#ffffff"
-          strokeWidth="2.2"
-          strokeLinejoin="round"
-          strokeLinecap="round"
-          opacity="0.9"
-        />
+              fill="none"
+              stroke="#ffffff"
+              strokeWidth="2.2"
+              strokeLinejoin="round"
+              strokeLinecap="round"
+              opacity="0.9"
+            />
 
-        {/* Layer D: Continuous Inner Radiant Neon Magenta Rim */}
-        <path
-          d="M 500 174 
+            {/* Layer D: Continuous Inner Radiant Neon Magenta Rim */}
+            <path
+              d="M 500 174 
              L 228 174 
              C 172 174, 120 220, 104 284 
              L 86 430 
              C 82 458, 90 518, 102 602 
              C 114 642, 144 676, 186 712 
              L 210 730"
-          fill="none"
-          stroke="#ff26df"
-          strokeWidth="8"
-          strokeLinecap="round"
-          filter="url(#neonGlowFilter)"
-          className="frame-neon"
-          opacity="0.95"
-        />
-        <path
-          d="M 500 174 
+              fill="none"
+              stroke="#ff26df"
+              strokeWidth="8"
+              strokeLinecap="round"
+              filter="url(#neonGlowFilter)"
+              className="frame-neon"
+              opacity="0.95"
+            />
+            <path
+              d="M 500 174 
              L 228 174 
              C 172 174, 120 220, 104 284 
              L 86 430 
              C 82 458, 90 518, 102 602 
              C 114 642, 144 676, 186 712 
              L 210 730"
-          fill="none"
-          stroke="#ffffff"
-          strokeWidth="2.5"
-          strokeLinecap="round"
-          opacity="0.9"
-        />
+              fill="none"
+              stroke="#ffffff"
+              strokeWidth="2.5"
+              strokeLinecap="round"
+              opacity="0.9"
+            />
 
-        {/* Right Continuous Neon Path */}
-        <path
-          d="M 1100 174 
+            {/* Right Continuous Neon Path */}
+            <path
+              d="M 1100 174 
              L 1372 174 
              C 1428 174, 1480 220, 1496 284 
              L 1514 430 
              C 1518 458, 1510 518, 1498 602 
              C 1486 642, 1456 676, 1414 712 
              L 1390 730"
-          fill="none"
-          stroke="#ff26df"
-          strokeWidth="8"
-          strokeLinecap="round"
-          filter="url(#neonGlowFilter)"
-          className="frame-neon"
-          opacity="0.95"
-        />
-        <path
-          d="M 1100 174 
+              fill="none"
+              stroke="#ff26df"
+              strokeWidth="8"
+              strokeLinecap="round"
+              filter="url(#neonGlowFilter)"
+              className="frame-neon"
+              opacity="0.95"
+            />
+            <path
+              d="M 1100 174 
              L 1372 174 
              C 1428 174, 1480 220, 1496 284 
              L 1514 430 
              C 1518 458, 1510 518, 1498 602 
              C 1486 642, 1456 676, 1414 712 
              L 1390 730"
-          fill="none"
-          stroke="#ffffff"
-          strokeWidth="2.5"
-          strokeLinecap="round"
-          opacity="0.9"
-        />
+              fill="none"
+              stroke="#ffffff"
+              strokeWidth="2.5"
+              strokeLinecap="round"
+              opacity="0.9"
+            />
 
-        {/* Shoulder Starburst Lens Flares */}
-        <g className="gold-glint">
-          <use href="#starGlint" transform="translate(305, 138) scale(0.9)" />
-          <use href="#starGlint" transform="translate(1295, 138) scale(0.9)" />
-        </g>
-      </g>
+            {/* Shoulder Starburst Lens Flares */}
+            <g className="gold-glint">
+              <use href="#starGlint" transform="translate(305, 138) scale(0.9)" />
+              <use href="#starGlint" transform="translate(1295, 138) scale(0.9)" />
+            </g>
+          </g>
 
-      {/* ── 2. TOP MUSIC PANEL (PLAQUE) ── */}
-      <TopMusicPanel />
+          {/* ── 2. TOP MUSIC PANEL (PLAQUE) ── */}
+          <TopMusicPanel />
 
-      {/* ── 3. BOTTOM DECORATIVE PLATFORM & MEDALLION ── */}
-      <BottomMusicPanel />
+          {/* ── 3. BOTTOM DECORATIVE PLATFORM & MEDALLION ── */}
+          <BottomMusicPanel />
 
-      {/* ── 4. LEFT DETAILED SAXOPHONE (ENTRANCE FROM LEFT ON RELOAD / SCROLL) ── */}
-      <g className="sax-entrance-left">
-        <SaxophoneLeft />
-      </g>
+          {/* ── 4. LEFT DETAILED SAXOPHONE (ENTRANCE FROM LEFT ON RELOAD / SCROLL) ── */}
+          <g className="sax-entrance-left">
+            <SaxophoneLeft />
+          </g>
 
-      {/* ── 5. RIGHT DETAILED SAXOPHONE (ENTRANCE FROM RIGHT ON RELOAD / SCROLL) ── */}
-      <g className="sax-entrance-right">
-        <SaxophoneRight />
-      </g>
+          {/* ── 5. RIGHT DETAILED SAXOPHONE (ENTRANCE FROM RIGHT ON RELOAD / SCROLL) ── */}
+          <g className="sax-entrance-right">
+            <SaxophoneRight />
+          </g>
 
-      {/* ── 6. CENTRAL SCREEN INNER GLASS DISPLAY & INTERACTIVE DASHBOARD ── */}
-      <g id="central-screen-display" style={{ pointerEvents: 'auto' }}>
-        {/* Subtle Frosted Translucent Studio Screen Backing */}
-        <rect
-          x="360"
-          y="200"
-          width="880"
-          height="465"
-          rx="28"
-          fill="#31024e"
-          fillOpacity="0.14"
-          stroke="url(#purpleFaceGrad)"
-          strokeWidth="1.2"
-          strokeOpacity="0.5"
-          pointerEvents="none"
-        />
+          {/* ── 6. CENTRAL SCREEN INNER GLASS DISPLAY & INTERACTIVE DASHBOARD ── */}
+          <g id="central-screen-display" style={{ pointerEvents: 'auto' }}>
+            {/* Subtle Frosted Translucent Studio Screen Backing */}
+            <rect
+              x="360"
+              y="200"
+              width="880"
+              height="465"
+              rx="28"
+              fill="#31024e"
+              fillOpacity="0.14"
+              stroke="url(#purpleFaceGrad)"
+              strokeWidth="1.2"
+              strokeOpacity="0.5"
+              pointerEvents="none"
+            />
 
-        {/* Inner Screen Thin Neon Border Glow */}
-        <rect
-          x="364"
-          y="204"
-          width="872"
-          height="457"
-          rx="24"
-          fill="none"
-          stroke="#ff26df"
-          strokeWidth="1.5"
-          strokeOpacity="0.35"
-          pointerEvents="none"
-        />
+            {/* Inner Screen Thin Neon Border Glow */}
+            <rect
+              x="364"
+              y="204"
+              width="872"
+              height="457"
+              rx="24"
+              fill="none"
+              stroke="#ff26df"
+              strokeWidth="1.5"
+              strokeOpacity="0.35"
+              pointerEvents="none"
+            />
 
-        {/* Interactive Music Telemetry & Playback Dashboard */}
-        <foreignObject x="360" y="200" width="880" height="465" style={{ pointerEvents: 'auto' }}>
-          <CentralMusicDashboard
-            currentTrackIdx={currentTrackIdx}
-            setCurrentTrackIdx={setCurrentTrackIdx}
-            slideDirection={slideDirection}
-            setSlideDirection={setSlideDirection}
-            handleNext={handleNext}
-            handlePrev={handlePrev}
-          />
-        </foreignObject>
+            {/* Interactive Music Telemetry & Playback Dashboard */}
+            <foreignObject x="360" y="200" width="880" height="465" style={{ pointerEvents: 'auto' }}>
+              <CentralMusicDashboard
+                currentTrackIdx={currentTrackIdx}
+                setCurrentTrackIdx={setCurrentTrackIdx}
+                slideDirection={slideDirection}
+                setSlideDirection={setSlideDirection}
+                handleNext={handleNext}
+                handlePrev={handlePrev}
+              />
+            </foreignObject>
 
-        {/* Floating 3D Golden Music Notes Emitting Continuously from Saxophone Mouths */}
-        <FloatingMusicNotes />
-      </g>
-    </svg>
+            {/* Floating 3D Golden Music Notes Emitting Continuously from Saxophone Mouths */}
+            <FloatingMusicNotes />
+          </g>
+        </svg>
       </div>
 
       {/* ── MOBILE VIEW: Touch-Friendly Responsive 3D Musical Frame & Suite (< 768px) ── */}
@@ -2193,16 +2224,16 @@ export function FeaturedMusicVideoShowcase({ className = '', style = {} }) {
    ========================================================================= */
 export const FeaturedMusicVideos = () => {
   return (
-    <section 
+    <section
       id="featured-music-videos"
-      aria-label="Featured Music Videos" 
+      aria-label="Featured Music Videos"
       className="relative w-full max-w-[1620px] mx-auto px-4 sm:px-6 md:px-8 lg:px-10 mt-8 sm:mt-12 lg:mt-16 select-none scroll-mt-24"
     >
       {/* Signature Section Header */}
-      <SectionHeader 
-        titlePrefix={featuredMusicVideosData.titlePrefix} 
-        titleAccent={featuredMusicVideosData.titleAccent} 
-        subtitle={featuredMusicVideosData.subtitle} 
+      <SectionHeader
+        titlePrefix={featuredMusicVideosData.titlePrefix}
+        titleAccent={featuredMusicVideosData.titleAccent}
+        subtitle={featuredMusicVideosData.subtitle}
       />
 
       {/* 3D Master Musical Frame with Saxophones & Interactive Music Suite */}
