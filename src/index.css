@@ -1,0 +1,2445 @@
+@import "tailwindcss";
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    -webkit-overflow-scrolling: touch;
+    scroll-padding-top: 96px;
+  }
+
+  /* Prevent browser-level native smooth-scroll conflicts when Lenis momentum engine runs */
+  html.lenis,
+  html.lenis body {
+    height: auto;
+  }
+
+  .lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+  }
+
+  .lenis.lenis-smooth [data-lenis-prevent] {
+    overscroll-behavior: contain;
+  }
+
+  .lenis.lenis-stopped {
+    overflow: hidden;
+  }
+
+  .lenis.lenis-scrolling iframe {
+    pointer-events: none;
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+    background-color: #ffffff;
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    width: 100%;
+    min-height: 100vh;
+    overflow-x: clip;
+  }
+}
+
+/* Custom styling for navbar glassy dark backdrop and glow */
+.soundwave-capsule-shadow {
+  box-shadow:
+    0 10px 40px -10px rgba(0, 0, 0, 0.45),
+    0 0 25px 0 rgba(239, 53, 237, 0.12);
+}
+
+.bottom-magenta-glow {
+  background: radial-gradient(ellipse 70% 60% at 50% 100%, rgba(239, 53, 237, 0.45) 0%, rgba(130, 56, 255, 0.18) 45%, rgba(0, 0, 0, 0) 80%);
+}
+
+.top-violet-rim {
+  background: linear-gradient(90deg, rgba(130, 56, 255, 0.05) 0%, rgba(168, 85, 247, 0.4) 30%, rgba(239, 53, 237, 0.35) 70%, rgba(130, 56, 255, 0.05) 100%);
+}
+
+/* Vinyl record micro-grooves effect */
+.vinyl-grooves {
+  background: repeating-radial-gradient(circle at center,
+      #0d0c14 0px,
+      #0d0c14 1.5px,
+      #1b1928 2px,
+      #12111c 3px,
+      #1e1c2e 4px,
+      #0f0e18 5px);
+}
+
+/* Brushed vinyl specular reflection */
+.vinyl-specular {
+  background: conic-gradient(from 45deg at 50% 50%,
+      rgba(255, 255, 255, 0.14) 0deg,
+      transparent 45deg,
+      rgba(255, 255, 255, 0.08) 90deg,
+      transparent 135deg,
+      rgba(255, 255, 255, 0.14) 180deg,
+      transparent 225deg,
+      rgba(255, 255, 255, 0.08) 270deg,
+      transparent 315deg,
+      rgba(255, 255, 255, 0.14) 360deg);
+}
+
+/* Smooth Continuous Vinyl Record 360deg Rotation */
+@keyframes vinylRecordSpin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-vinyl-spin {
+  animation: vinylRecordSpin 8s linear infinite;
+  transform-origin: center;
+  will-change: transform;
+}
+
+.group:hover .animate-vinyl-spin {
+  animation-duration: 4.5s;
+}
+
+/* Staggered Natural Drop Animation for Navbar Links on Page Load:
+   Falls smoothly from above the guitar neck and settles with an organic spring bounce */
+@keyframes navItemDrop {
+  0% {
+    opacity: 0;
+    transform: translateY(-85px) scale(0.88);
+  }
+
+  25% {
+    opacity: 1;
+  }
+
+  68% {
+    opacity: 1;
+    transform: translateY(7px) scaleX(1.04) scaleY(0.96);
+  }
+
+  84% {
+    transform: translateY(-3px) scaleX(0.99) scaleY(1.01);
+  }
+
+  94% {
+    transform: translateY(1px) scale(1);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.animate-nav-drop {
+  animation: navItemDrop 0.85s cubic-bezier(0.22, 1, 0.36, 1) both;
+  will-change: transform, opacity;
+}
+
+/* Animated Letter-by-Letter Music Wave Emergence from Vinyl Circle on Page Load (Slow & Smooth) */
+@keyframes letterWaveEmerge {
+  0% {
+    opacity: 0;
+    transform: translateX(-65px) translateY(0) scale(0.5);
+    filter: blur(4px);
+  }
+
+  25% {
+    opacity: 0.85;
+    transform: translateX(-35px) translateY(-14px) scale(1.18);
+    filter: blur(1.5px);
+  }
+
+  55% {
+    opacity: 1;
+    transform: translateX(-12px) translateY(8px) scale(0.95);
+    filter: blur(0px);
+  }
+
+  78% {
+    transform: translateX(4px) translateY(-3px) scale(1.02);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0) translateY(0) scale(1);
+    filter: blur(0px);
+  }
+}
+
+.animate-letter-wave {
+  display: inline-block;
+  animation: letterWaveEmerge 1.2s cubic-bezier(0.16, 0.85, 0.25, 1) both;
+  will-change: transform, opacity, filter;
+}
+
+/* Music Particles Floating Far OUT of Vinyl Soundhole and Guitar Body (Image 2) */
+@keyframes floatParticle1 {
+  0% {
+    opacity: 0;
+    transform: translate(0px, 0px) scale(0.3) rotate(0deg);
+  }
+
+  15% {
+    opacity: 0.95;
+    transform: translate(25px, -20px) scale(0.85) rotate(10deg);
+  }
+
+  50% {
+    opacity: 0.9;
+    transform: translate(65px, -55px) scale(1.15) rotate(22deg);
+  }
+
+  85% {
+    opacity: 0.6;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(115px, -100px) scale(1.3) rotate(35deg);
+  }
+}
+
+@keyframes floatParticle2 {
+  0% {
+    opacity: 0;
+    transform: translate(0px, 0px) scale(0.3) rotate(0deg);
+  }
+
+  18% {
+    opacity: 0.95;
+    transform: translate(-20px, -20px) scale(0.85) rotate(-8deg);
+  }
+
+  50% {
+    opacity: 0.9;
+    transform: translate(-60px, -50px) scale(1.1) rotate(-18deg);
+  }
+
+  85% {
+    opacity: 0.6;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(-105px, -90px) scale(1.25) rotate(-30deg);
+  }
+}
+
+@keyframes floatParticle3 {
+  0% {
+    opacity: 0;
+    transform: translate(0px, 0px) scale(0.3) rotate(0deg);
+  }
+
+  20% {
+    opacity: 0.95;
+    transform: translate(25px, 15px) scale(0.85) rotate(10deg);
+  }
+
+  55% {
+    opacity: 0.85;
+    transform: translate(75px, 35px) scale(1.1) rotate(25deg);
+  }
+
+  85% {
+    opacity: 0.5;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(130px, 60px) scale(1.2) rotate(42deg);
+  }
+}
+
+@keyframes floatParticle4 {
+  0% {
+    opacity: 0;
+    transform: translate(0px, 0px) scale(0.3) rotate(0deg);
+  }
+
+  18% {
+    opacity: 0.95;
+    transform: translate(-20px, 15px) scale(0.85) rotate(-6deg);
+  }
+
+  55% {
+    opacity: 0.85;
+    transform: translate(-65px, 40px) scale(1.05) rotate(-15deg);
+  }
+
+  85% {
+    opacity: 0.55;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(-110px, 75px) scale(1.15) rotate(-24deg);
+  }
+}
+
+@keyframes floatParticle5 {
+  0% {
+    opacity: 0;
+    transform: translate(0px, 0px) scale(0.2) rotate(0deg);
+  }
+
+  15% {
+    opacity: 0.95;
+    transform: translate(35px, -5px) scale(0.9) rotate(5deg);
+  }
+
+  55% {
+    opacity: 0.9;
+    transform: translate(100px, -15px) scale(1.2) rotate(12deg);
+  }
+
+  85% {
+    opacity: 0.6;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(170px, -20px) scale(1.35) rotate(22deg);
+  }
+}
+
+@keyframes floatParticle6 {
+  0% {
+    opacity: 0;
+    transform: translate(0px, 0px) scale(0.3) rotate(0deg);
+  }
+
+  20% {
+    opacity: 0.95;
+    transform: translate(5px, -30px) scale(0.85) rotate(-5deg);
+  }
+
+  60% {
+    opacity: 0.85;
+    transform: translate(15px, -75px) scale(1.15) rotate(-10deg);
+  }
+
+  85% {
+    opacity: 0.5;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(25px, -120px) scale(1.25) rotate(-18deg);
+  }
+}
+
+@keyframes floatParticle7 {
+  0% {
+    opacity: 0;
+    transform: translate(0px, 0px) scale(0.3) rotate(0deg);
+  }
+
+  18% {
+    opacity: 0.95;
+    transform: translate(-30px, -5px) scale(0.9) rotate(8deg);
+  }
+
+  55% {
+    opacity: 0.85;
+    transform: translate(-80px, -10px) scale(1.15) rotate(18deg);
+  }
+
+  85% {
+    opacity: 0.5;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(-135px, -15px) scale(1.2) rotate(28deg);
+  }
+}
+
+@keyframes floatParticle8 {
+  0% {
+    opacity: 0;
+    transform: translate(0px, 0px) scale(0.3) rotate(0deg);
+  }
+
+  15% {
+    opacity: 0.95;
+    transform: translate(30px, -15px) scale(0.85) rotate(-10deg);
+  }
+
+  55% {
+    opacity: 0.9;
+    transform: translate(85px, -45px) scale(1.15) rotate(-25deg);
+  }
+
+  85% {
+    opacity: 0.55;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(140px, -75px) scale(1.3) rotate(-38deg);
+  }
+}
+
+@keyframes floatParticle9 {
+  0% {
+    opacity: 0;
+    transform: translate(0px, 0px) scale(0.3) rotate(0deg);
+  }
+
+  20% {
+    opacity: 0.95;
+    transform: translate(-5px, 25px) scale(0.85) rotate(6deg);
+  }
+
+  55% {
+    opacity: 0.85;
+    transform: translate(-12px, 65px) scale(1.1) rotate(15deg);
+  }
+
+  85% {
+    opacity: 0.5;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(-20px, 110px) scale(1.2) rotate(25deg);
+  }
+}
+
+@keyframes floatParticle10 {
+  0% {
+    opacity: 0;
+    transform: translate(0px, 0px) scale(0.2) rotate(0deg);
+  }
+
+  15% {
+    opacity: 0.95;
+    transform: translate(35px, 8px) scale(0.9) rotate(-5deg);
+  }
+
+  55% {
+    opacity: 0.9;
+    transform: translate(105px, 16px) scale(1.2) rotate(-12deg);
+  }
+
+  85% {
+    opacity: 0.55;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(175px, 22px) scale(1.3) rotate(-22deg);
+  }
+}
+
+/* Guitar Body Outline Emitters (Rising & drifting out from guitar silhouette - Image 2) */
+@keyframes floatBodyUpperBout1 {
+  0% {
+    opacity: 0;
+    transform: translate(0px, 0px) scale(0.4) rotate(0deg);
+  }
+
+  25% {
+    opacity: 0.9;
+    transform: translate(-8px, -18px) scale(0.9) rotate(-10deg);
+  }
+
+  75% {
+    opacity: 0.7;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(-18px, -45px) scale(1.2) rotate(-22deg);
+  }
+}
+
+@keyframes floatBodyUpperBout2 {
+  0% {
+    opacity: 0;
+    transform: translate(0px, 0px) scale(0.4) rotate(0deg);
+  }
+
+  25% {
+    opacity: 0.9;
+    transform: translate(10px, -20px) scale(0.95) rotate(12deg);
+  }
+
+  75% {
+    opacity: 0.7;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(25px, -52px) scale(1.25) rotate(28deg);
+  }
+}
+
+@keyframes floatBodyLowerBout1 {
+  0% {
+    opacity: 0;
+    transform: translate(0px, 0px) scale(0.4) rotate(0deg);
+  }
+
+  25% {
+    opacity: 0.85;
+    transform: translate(-10px, 18px) scale(0.9) rotate(8deg);
+  }
+
+  75% {
+    opacity: 0.65;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(-22px, 48px) scale(1.2) rotate(20deg);
+  }
+}
+
+@keyframes floatBodyLowerBout2 {
+  0% {
+    opacity: 0;
+    transform: translate(0px, 0px) scale(0.4) rotate(0deg);
+  }
+
+  25% {
+    opacity: 0.85;
+    transform: translate(12px, 20px) scale(0.9) rotate(-8deg);
+  }
+
+  75% {
+    opacity: 0.65;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(28px, 50px) scale(1.2) rotate(-24deg);
+  }
+}
+
+@keyframes floatBodyWaist {
+  0% {
+    opacity: 0;
+    transform: translate(0px, 0px) scale(0.4) rotate(0deg);
+  }
+
+  25% {
+    opacity: 0.9;
+    transform: translate(6px, -16px) scale(0.95) rotate(10deg);
+  }
+
+  75% {
+    opacity: 0.7;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(18px, -46px) scale(1.25) rotate(24deg);
+  }
+}
+
+@keyframes floatBodyBridge {
+  0% {
+    opacity: 0;
+    transform: translate(0px, 0px) scale(0.4) rotate(0deg);
+  }
+
+  25% {
+    opacity: 0.85;
+    transform: translate(-18px, -8px) scale(0.9) rotate(-12deg);
+  }
+
+  75% {
+    opacity: 0.65;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(-45px, -22px) scale(1.2) rotate(-28deg);
+  }
+}
+
+.animate-particle-1 {
+  animation: floatParticle1 3.4s cubic-bezier(0.2, 0.7, 0.3, 1) infinite;
+  will-change: transform, opacity;
+}
+
+.animate-particle-2 {
+  animation: floatParticle2 3.1s cubic-bezier(0.2, 0.7, 0.3, 1) infinite;
+  will-change: transform, opacity;
+}
+
+.animate-particle-3 {
+  animation: floatParticle3 3.8s cubic-bezier(0.2, 0.7, 0.3, 1) infinite;
+  will-change: transform, opacity;
+}
+
+.animate-particle-4 {
+  animation: floatParticle4 3.3s cubic-bezier(0.2, 0.7, 0.3, 1) infinite;
+  will-change: transform, opacity;
+}
+
+.animate-particle-5 {
+  animation: floatParticle5 3.6s cubic-bezier(0.2, 0.7, 0.3, 1) infinite;
+  will-change: transform, opacity;
+}
+
+.animate-particle-6 {
+  animation: floatParticle6 3.5s cubic-bezier(0.2, 0.7, 0.3, 1) infinite;
+  will-change: transform, opacity;
+}
+
+.animate-particle-7 {
+  animation: floatParticle7 3.2s cubic-bezier(0.2, 0.7, 0.3, 1) infinite;
+  will-change: transform, opacity;
+}
+
+.animate-particle-8 {
+  animation: floatParticle8 3.7s cubic-bezier(0.2, 0.7, 0.3, 1) infinite;
+  will-change: transform, opacity;
+}
+
+.animate-particle-9 {
+  animation: floatParticle9 3.3s cubic-bezier(0.2, 0.7, 0.3, 1) infinite;
+  will-change: transform, opacity;
+}
+
+.animate-particle-10 {
+  animation: floatParticle10 3.9s cubic-bezier(0.2, 0.7, 0.3, 1) infinite;
+  will-change: transform, opacity;
+}
+
+.animate-body-particle-1 {
+  animation: floatBodyUpperBout1 3.5s ease-out infinite;
+  will-change: transform, opacity;
+}
+
+.animate-body-particle-2 {
+  animation: floatBodyUpperBout2 3.2s ease-out infinite;
+  will-change: transform, opacity;
+}
+
+.animate-body-particle-3 {
+  animation: floatBodyLowerBout1 3.7s ease-out infinite;
+  will-change: transform, opacity;
+}
+
+.animate-body-particle-4 {
+  animation: floatBodyLowerBout2 3.4s ease-out infinite;
+  will-change: transform, opacity;
+}
+
+.animate-body-particle-5 {
+  animation: floatBodyWaist 3.6s ease-out infinite;
+  will-change: transform, opacity;
+}
+
+.animate-body-particle-6 {
+  animation: floatBodyBridge 3.3s ease-out infinite;
+  will-change: transform, opacity;
+}
+
+/* Interactive Hover Surge for Equalizer Section Above Hovered Nav Item */
+.bar-hover-surge {
+  animation-play-state: paused !important;
+  transform: scaleY(1.36) !important;
+  filter: drop-shadow(0 -3px 8px rgba(56, 189, 248, 0.65)) brightness(1.25) !important;
+  transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), filter 0.28s ease !important;
+}
+
+/* High-contrast ultra-crisp legibility for fretboard links */
+.nav-link-contrast {
+  text-shadow:
+    -1px -1px 0 rgba(0, 0, 0, 0.9),
+    1px -1px 0 rgba(0, 0, 0, 0.9),
+    -1px 1px 0 rgba(0, 0, 0, 0.9),
+    1px 1px 0 rgba(0, 0, 0, 0.9),
+    0 2px 6px rgba(0, 0, 0, 0.95),
+    0 0 10px rgba(0, 0, 0, 0.9);
+}
+
+/* Animated Equalizer Soundwave Pulse */
+@keyframes soundwaveBarPulse {
+
+  0%,
+  100% {
+    transform: scaleY(1);
+    opacity: 0.95;
+  }
+
+  20% {
+    transform: scaleY(0.35);
+    opacity: 0.72;
+  }
+
+  48% {
+    transform: scaleY(1.22);
+    opacity: 1;
+  }
+
+  72% {
+    transform: scaleY(0.58);
+    opacity: 0.82;
+  }
+
+  86% {
+    transform: scaleY(0.92);
+    opacity: 0.92;
+  }
+}
+
+.animate-equalizer-bar {
+  transform-box: fill-box;
+  transform-origin: bottom;
+  animation: soundwaveBarPulse ease-in-out infinite alternate;
+  will-change: transform, opacity;
+}
+
+@keyframes soundwaveBaseGlow {
+
+  0%,
+  100% {
+    opacity: 0.35;
+    transform: scaleX(0.96);
+  }
+
+  50% {
+    opacity: 0.65;
+    transform: scaleX(1.02);
+  }
+}
+
+.animate-equalizer-glow {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: soundwaveBaseGlow 2.4s ease-in-out infinite alternate;
+}
+
+/* ========================================================
+   Fretboard Equalizer Soundwave Spectrum Animations (Lively Audio Tempo)
+   Anchored strictly on baselineY (57), rising exclusively UPWARDS
+   ======================================================== */
+@keyframes eqPulseVariant1 {
+
+  0%,
+  100% {
+    transform: scaleY(0.28);
+    opacity: 0.72;
+  }
+
+  50% {
+    transform: scaleY(1.05);
+    opacity: 1;
+  }
+}
+
+@keyframes eqPulseVariant2 {
+
+  0%,
+  100% {
+    transform: scaleY(0.92);
+    opacity: 0.96;
+  }
+
+  32% {
+    transform: scaleY(0.24);
+    opacity: 0.65;
+  }
+
+  74% {
+    transform: scaleY(1.08);
+    opacity: 1;
+  }
+}
+
+@keyframes eqPulseVariant3 {
+
+  0%,
+  100% {
+    transform: scaleY(0.38);
+    opacity: 0.75;
+  }
+
+  42% {
+    transform: scaleY(1.12);
+    opacity: 1;
+  }
+
+  78% {
+    transform: scaleY(0.26);
+    opacity: 0.68;
+  }
+}
+
+@keyframes eqPulseVariant4 {
+
+  0%,
+  100% {
+    transform: scaleY(0.88);
+    opacity: 0.95;
+  }
+
+  48% {
+    transform: scaleY(0.28);
+    opacity: 0.70;
+  }
+}
+
+@keyframes eqPulseVariant5 {
+
+  0%,
+  100% {
+    transform: scaleY(0.22);
+    opacity: 0.68;
+  }
+
+  35% {
+    transform: scaleY(0.85);
+    opacity: 0.92;
+  }
+
+  65% {
+    transform: scaleY(0.32);
+    opacity: 0.72;
+  }
+
+  85% {
+    transform: scaleY(1.10);
+    opacity: 1;
+  }
+}
+
+@keyframes eqPulseVariant6 {
+
+  0%,
+  100% {
+    transform: scaleY(0.75);
+    opacity: 0.90;
+  }
+
+  25% {
+    transform: scaleY(1.05);
+    opacity: 1;
+  }
+
+  58% {
+    transform: scaleY(0.22);
+    opacity: 0.65;
+  }
+
+  88% {
+    transform: scaleY(0.95);
+    opacity: 0.95;
+  }
+}
+
+.animate-eq-bar-1 {
+  animation: eqPulseVariant1 0.82s ease-in-out infinite;
+  will-change: transform, opacity;
+}
+
+.animate-eq-bar-2 {
+  animation: eqPulseVariant2 0.75s ease-in-out infinite;
+  will-change: transform, opacity;
+}
+
+.animate-eq-bar-3 {
+  animation: eqPulseVariant3 0.88s ease-in-out infinite;
+  will-change: transform, opacity;
+}
+
+.animate-eq-bar-4 {
+  animation: eqPulseVariant4 0.78s ease-in-out infinite;
+  will-change: transform, opacity;
+}
+
+.animate-eq-bar-5 {
+  animation: eqPulseVariant5 0.92s ease-in-out infinite;
+  will-change: transform, opacity;
+}
+
+.animate-eq-bar-6 {
+  animation: eqPulseVariant6 0.84s ease-in-out infinite;
+  will-change: transform, opacity;
+}
+
+@keyframes eqWaveSway {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-2.5px);
+  }
+}
+
+.animate-eq-wave-sway {
+  animation: eqWaveSway 2.4s ease-in-out infinite;
+  will-change: transform;
+}
+
+/* ========================================================
+   Tiny Sound Particles Emerging FROM Equalizer & Floating UPWARD
+   ======================================================== */
+@keyframes floatSoundParticleUp1 {
+  0% {
+    opacity: 0;
+    transform: translate(0px, 0px) scale(0.3) rotate(0deg);
+  }
+
+  18% {
+    opacity: 0.95;
+    transform: translate(6px, -18px) scale(1.05) rotate(8deg);
+  }
+
+  55% {
+    opacity: 0.88;
+    transform: translate(14px, -42px) scale(1.15) rotate(18deg);
+  }
+
+  82% {
+    opacity: 0.45;
+    transform: translate(18px, -62px) scale(0.95) rotate(26deg);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(22px, -78px) scale(0.8) rotate(32deg);
+  }
+}
+
+@keyframes floatSoundParticleUp2 {
+  0% {
+    opacity: 0;
+    transform: translate(0px, 0px) scale(0.3) rotate(0deg);
+  }
+
+  20% {
+    opacity: 0.95;
+    transform: translate(-7px, -20px) scale(1.08) rotate(-10deg);
+  }
+
+  58% {
+    opacity: 0.85;
+    transform: translate(-16px, -46px) scale(1.18) rotate(-22deg);
+  }
+
+  84% {
+    opacity: 0.4;
+    transform: translate(-22px, -66px) scale(0.92) rotate(-30deg);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(-26px, -82px) scale(0.75) rotate(-38deg);
+  }
+}
+
+@keyframes floatSoundParticleUp3 {
+  0% {
+    opacity: 0;
+    transform: translate(0px, 0px) scale(0.35) rotate(0deg);
+  }
+
+  16% {
+    opacity: 0.98;
+    transform: translate(4px, -16px) scale(1.0) rotate(6deg);
+  }
+
+  52% {
+    opacity: 0.9;
+    transform: translate(10px, -38px) scale(1.1) rotate(15deg);
+  }
+
+  80% {
+    opacity: 0.5;
+    transform: translate(13px, -56px) scale(0.96) rotate(22deg);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(15px, -72px) scale(0.82) rotate(28deg);
+  }
+}
+
+@keyframes floatSoundParticleUp4 {
+  0% {
+    opacity: 0;
+    transform: translate(0px, 0px) scale(0.3) rotate(0deg);
+  }
+
+  22% {
+    opacity: 0.92;
+    transform: translate(-5px, -18px) scale(1.02) rotate(-8deg);
+  }
+
+  60% {
+    opacity: 0.82;
+    transform: translate(-12px, -44px) scale(1.12) rotate(-18deg);
+  }
+
+  85% {
+    opacity: 0.38;
+    transform: translate(-17px, -64px) scale(0.9) rotate(-25deg);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(-20px, -76px) scale(0.78) rotate(-32deg);
+  }
+}
+
+.animate-sound-particle-1 {
+  animation: floatSoundParticleUp1 3.2s cubic-bezier(0.25, 1, 0.5, 1) infinite;
+  will-change: transform, opacity;
+}
+
+.animate-sound-particle-2 {
+  animation: floatSoundParticleUp2 3.6s cubic-bezier(0.25, 1, 0.5, 1) infinite;
+  will-change: transform, opacity;
+}
+
+.animate-sound-particle-3 {
+  animation: floatSoundParticleUp3 3.0s cubic-bezier(0.25, 1, 0.5, 1) infinite;
+  will-change: transform, opacity;
+}
+
+.animate-sound-particle-4 {
+  animation: floatSoundParticleUp4 3.4s cubic-bezier(0.25, 1, 0.5, 1) infinite;
+  will-change: transform, opacity;
+}
+
+/* ========================================================
+   SoundWave Signature Footer Top Wave Animation (Left to Right)
+   ======================================================== */
+
+/* Continuous left-to-right energy beam streaming along the 1629px wave rim */
+@keyframes waveRimStreamL2R {
+  0% {
+    stroke-dashoffset: 0;
+  }
+
+  100% {
+    stroke-dashoffset: -1629;
+  }
+}
+
+.animate-wave-stream-1 {
+  stroke-dasharray: 400 1229;
+  animation: waveRimStreamL2R 4.2s linear infinite;
+  will-change: stroke-dashoffset;
+}
+
+.animate-wave-stream-2 {
+  stroke-dasharray: 280 1349;
+  animation: waveRimStreamL2R 5.6s linear infinite;
+  animation-delay: -2.8s;
+  will-change: stroke-dashoffset;
+}
+
+.animate-wave-stream-fast {
+  stroke-dasharray: 100 1529;
+  animation: waveRimStreamL2R 3.2s linear infinite;
+  animation-delay: -1.2s;
+  will-change: stroke-dashoffset;
+}
+
+/* Subtle undulating horizontal breathing for wave ribbon veils */
+@keyframes waveVeilSway {
+
+  0%,
+  100% {
+    transform: translate(0, 0) scaleY(1);
+    opacity: 0.55;
+  }
+
+  50% {
+    transform: translate(12px, -3px) scaleY(1.04);
+    opacity: 0.72;
+  }
+}
+
+.animate-wave-veil-left {
+  transform-box: fill-box;
+  transform-origin: left center;
+  animation: waveVeilSway 6.5s ease-in-out infinite;
+}
+
+.animate-wave-veil-right {
+  transform-box: fill-box;
+  transform-origin: right center;
+  animation: waveVeilSway 7.2s ease-in-out infinite reverse;
+}
+
+/* Floating musical notes bobbing */
+@keyframes noteBob1 {
+
+  0%,
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+
+  50% {
+    transform: translateY(-8px) rotate(4deg);
+  }
+}
+
+@keyframes noteBob2 {
+
+  0%,
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+
+  50% {
+    transform: translateY(-11px) rotate(-5deg);
+  }
+}
+
+@keyframes noteBob3 {
+
+  0%,
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+
+  50% {
+    transform: translateY(-9px) rotate(3deg);
+  }
+}
+
+.animate-note-1 {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: noteBob1 3.8s ease-in-out infinite;
+}
+
+.animate-note-2 {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: noteBob2 4.4s ease-in-out infinite 0.5s;
+}
+
+.animate-note-3 {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: noteBob3 3.4s ease-in-out infinite 1.1s;
+}
+
+.animate-note-4 {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: noteBob1 4.1s ease-in-out infinite 1.7s;
+}
+
+.animate-note-5 {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: noteBob2 3.6s ease-in-out infinite 0.3s;
+}
+
+.animate-note-6 {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: noteBob3 4.7s ease-in-out infinite 2.2s;
+}
+
+/* Pulsing glow for coral/orange orbs */
+@keyframes orbGlowPulse {
+
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.85;
+  }
+
+  50% {
+    transform: scale(1.35);
+    opacity: 1;
+  }
+}
+
+.animate-orb-pulse {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: orbGlowPulse 2.8s ease-in-out infinite;
+}
+
+/* Twinkle for diamond stars */
+@keyframes starTwinkle {
+
+  0%,
+  100% {
+    opacity: 0.35;
+    transform: scale(0.85);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.28);
+  }
+}
+
+.animate-star-twinkle-1 {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: starTwinkle 2.2s ease-in-out infinite;
+}
+
+.animate-star-twinkle-2 {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: starTwinkle 2.9s ease-in-out infinite 0.8s;
+}
+
+/* ========================================================
+   SoundWave Falling Music Icon Rain ("Icon ki Barish")
+   ======================================================== */
+
+@keyframes musicRainFall {
+  0% {
+    top: -50px;
+    opacity: 0;
+  }
+
+  6% {
+    opacity: 1;
+  }
+
+  92% {
+    opacity: 1;
+  }
+
+  100% {
+    top: 103%;
+    opacity: 0;
+  }
+}
+
+.animate-music-rain-fall {
+  animation-name: musicRainFall;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  will-change: top, opacity;
+}
+
+@keyframes rainSway1 {
+
+  0%,
+  100% {
+    transform: translateX(0px) rotate(-8deg);
+  }
+
+  50% {
+    transform: translateX(18px) rotate(15deg);
+  }
+}
+
+@keyframes rainSway2 {
+
+  0%,
+  100% {
+    transform: translateX(0px) rotate(10deg);
+  }
+
+  50% {
+    transform: translateX(-22px) rotate(-18deg);
+  }
+}
+
+@keyframes rainSway3 {
+
+  0%,
+  100% {
+    transform: translateX(0px) rotate(-14deg);
+  }
+
+  50% {
+    transform: translateX(15px) rotate(20deg);
+  }
+}
+
+.animate-rain-sway-1 {
+  animation: rainSway1 4.2s ease-in-out infinite;
+  will-change: transform;
+}
+
+.animate-rain-sway-2 {
+  animation: rainSway2 5.4s ease-in-out infinite;
+  will-change: transform;
+}
+
+.animate-rain-sway-3 {
+  animation: rainSway3 4.8s ease-in-out infinite;
+  will-change: transform;
+}
+
+/* ========================================================
+   SoundWave Floating Hero Music Cards & Interactive Player
+   ======================================================== */
+
+/* Organic Floating Levitation Animations for Hero Cards */
+@keyframes heroCardFloat1 {
+
+  0%,
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+
+  50% {
+    transform: translateY(-8px) rotate(-0.8deg);
+  }
+}
+
+@keyframes heroCardFloat2 {
+
+  0%,
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+
+  50% {
+    transform: translateY(-7px) rotate(1deg);
+  }
+}
+
+@keyframes heroCardFloat3 {
+
+  0%,
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+
+  50% {
+    transform: translateY(-9px) rotate(-1.2deg);
+  }
+}
+
+@keyframes heroCardFloat4 {
+
+  0%,
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+
+  50% {
+    transform: translateY(-6px) rotate(0.8deg);
+  }
+}
+
+/* Master Floating Card Container with Smooth Hover Pause and Lift */
+.hero-float-card {
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), filter 0.35s ease;
+  will-change: transform;
+}
+
+.hero-float-card:hover {
+  animation-play-state: paused !important;
+  transform: translateY(-6px) scale(1.025) !important;
+  filter: drop-shadow(0 18px 36px rgba(236, 72, 153, 0.35));
+}
+
+.hero-float-card-1 {
+  animation: heroCardFloat1 5.8s ease-in-out infinite;
+}
+
+.hero-float-card-2 {
+  animation: heroCardFloat2 6.4s ease-in-out infinite 0.8s;
+}
+
+.hero-float-card-3 {
+  animation: heroCardFloat3 5.4s ease-in-out infinite 1.6s;
+}
+
+.hero-float-card-4 {
+  animation: heroCardFloat4 6.0s ease-in-out infinite 2.4s;
+}
+
+.animate-hero-float-1 {
+  animation: heroCardFloat1 5.8s ease-in-out infinite;
+  will-change: transform;
+}
+
+.animate-hero-float-2 {
+  animation: heroCardFloat2 6.4s ease-in-out infinite 0.8s;
+  will-change: transform;
+}
+
+.animate-hero-float-3 {
+  animation: heroCardFloat3 5.4s ease-in-out infinite 1.6s;
+  will-change: transform;
+}
+
+.animate-hero-float-4 {
+  animation: heroCardFloat4 6.0s ease-in-out infinite 2.4s;
+  will-change: transform;
+}
+
+/* Hero Central Circle Reactive Audio Ring Animations */
+/* ================================================================
+   COMPACT DISC ANIMATIONS
+   ================================================================ */
+
+/* Outer ambient halo breathing pulse */
+@keyframes cdHaloPulse {
+
+  0%,
+  100% {
+    opacity: 0.55;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.80;
+    transform: scale(1.028);
+  }
+}
+
+.animate-cd-halo {
+  animation: cdHaloPulse 5s ease-in-out infinite;
+  will-change: transform, opacity;
+}
+
+/* Holographic rainbow reflection sweep — slow rotation around disc */
+@keyframes cdRainbowSpin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-cd-rainbow-spin {
+  animation: cdRainbowSpin 18s linear infinite;
+  transform-origin: center center;
+  will-change: transform;
+}
+
+/* Primary rotating iridescent rainbow diffraction spectrum (Fast & Vivid) */
+@keyframes cdHoloRainbowSpin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-cd-holo-rainbow {
+  animation: cdHoloRainbowSpin 7s linear infinite !important;
+  transform-origin: center center;
+  will-change: transform;
+}
+
+/* Secondary rotating dual-blade specular polycarbonate light sheen */
+@keyframes cdSpecularSheenSpin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-cd-specular-sheen {
+  animation: cdSpecularSheenSpin 5s linear infinite !important;
+  transform-origin: center center;
+  will-change: transform;
+}
+
+/* Outer chrome bevel rim reflection spin */
+@keyframes cdRimSpin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-cd-rim-spin {
+  animation: cdRimSpin 6s linear infinite !important;
+  transform-origin: center center;
+  will-change: transform;
+}
+
+/* Center brushed chrome spindle hub spin */
+@keyframes cdSpindleSpin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-cd-spindle-spin {
+  animation: cdSpindleSpin 4s linear infinite !important;
+  transform-origin: center center;
+  will-change: transform;
+}
+
+/* Vinyl grooves subtle counter spin */
+@keyframes cdGroovesCounterSpin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(-360deg);
+  }
+}
+
+.animate-cd-grooves-spin {
+  animation: cdGroovesCounterSpin 14s linear infinite !important;
+  transform-origin: center center;
+  will-change: transform;
+}
+
+/* Counter-rotating secondary sweep */
+@keyframes cdRainbowSpinReverse {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(-360deg);
+  }
+}
+
+.animate-cd-rainbow-spin-reverse {
+  animation: cdRainbowSpinReverse 8s linear infinite !important;
+  transform-origin: center center;
+  will-change: transform;
+}
+
+/* ──────────────────────────────────────────────────────────
+   Real Compact Disc Continuous Spin Animation (Video 2 Spec)
+   Smooth 22s linear rotation, clockwise, pauses on hover
+   ────────────────────────────────────────────────────────── */
+@keyframes cdSpin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-cd-spin {
+  animation: cdSpin 22s linear infinite !important;
+  transform-origin: center center;
+  will-change: transform;
+}
+
+.group:hover .animate-cd-spin,
+.animate-cd-spin:hover {
+  animation-play-state: paused !important;
+}
+
+/* Stylus needle subtle tracking micro-vibration as it rides the spinning CD grooves */
+@keyframes needleGrooveTrack {
+
+  0%,
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+
+  25% {
+    transform: translateY(0.4px) rotate(0.08deg);
+  }
+
+  50% {
+    transform: translateY(-0.3px) rotate(-0.06deg);
+  }
+
+  75% {
+    transform: translateY(0.5px) rotate(0.1deg);
+  }
+}
+
+.animate-needle-track {
+  animation: needleGrooveTrack 2.6s ease-in-out infinite;
+  transform-origin: 90% 50%;
+  will-change: transform;
+}
+
+/* Hero Ambient Drift Notes */
+@keyframes heroNoteDrift {
+
+  0%,
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+
+  50% {
+    transform: translateY(-12px) rotate(4deg);
+  }
+}
+
+.animate-hero-note-drift {
+  animation: heroNoteDrift 7s ease-in-out infinite;
+}
+
+/* Hero Minimal Downward Scroll Indicator Dot */
+@keyframes heroScrollDot {
+  0% {
+    opacity: 0;
+    transform: translateY(0);
+  }
+
+  30% {
+    opacity: 1;
+  }
+
+  80% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+}
+
+.animate-hero-scroll-dot {
+  animation: heroScrollDot 1.8s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+}
+
+/* Neon Aura Pulse around the Player Card */
+@keyframes playerCardAura {
+
+  0%,
+  100% {
+    box-shadow:
+      0 12px 36px -4px rgba(0, 0, 0, 0.6),
+      0 0 24px 0 rgba(239, 53, 237, 0.35),
+      0 0 45px 0 rgba(120, 53, 255, 0.2);
+  }
+
+  50% {
+    box-shadow:
+      0 16px 42px -4px rgba(0, 0, 0, 0.7),
+      0 0 35px 2px rgba(239, 53, 237, 0.55),
+      0 0 65px 4px rgba(120, 53, 255, 0.35);
+  }
+}
+
+.animate-player-aura {
+  animation: playerCardAura 3.6s ease-in-out infinite;
+}
+
+/* Heartbeat pulse animation */
+@keyframes heartBeat {
+
+  0%,
+  100% {
+    transform: scale(1);
+    filter: drop-shadow(0 0 4px rgba(239, 53, 237, 0.4));
+  }
+
+  14% {
+    transform: scale(1.22);
+    filter: drop-shadow(0 0 10px rgba(239, 53, 237, 0.9));
+  }
+
+  28% {
+    transform: scale(1);
+    filter: drop-shadow(0 0 4px rgba(239, 53, 237, 0.4));
+  }
+
+  42% {
+    transform: scale(1.15);
+    filter: drop-shadow(0 0 8px rgba(239, 53, 237, 0.75));
+  }
+
+  70% {
+    transform: scale(1);
+    filter: drop-shadow(0 0 4px rgba(239, 53, 237, 0.4));
+  }
+}
+
+.animate-heartbeat {
+  animation: heartBeat 2.4s ease-in-out infinite;
+}
+
+/* Play button pulsing glow ring */
+@keyframes playBtnGlowPulse {
+
+  0%,
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 16px rgba(239, 53, 237, 0.5), 0 0 25px rgba(120, 53, 255, 0.3);
+  }
+
+  50% {
+    transform: scale(1.04);
+    box-shadow: 0 0 24px rgba(239, 53, 237, 0.8), 0 0 40px rgba(120, 53, 255, 0.5);
+  }
+}
+
+.animate-play-glow {
+  animation: playBtnGlowPulse 2.2s ease-in-out infinite;
+}
+
+/* Expanding ripple ring behind the play button */
+@keyframes playBtnRipple {
+  0% {
+    transform: scale(0.9);
+    opacity: 0.8;
+  }
+
+  100% {
+    transform: scale(1.75);
+    opacity: 0;
+  }
+}
+
+.animate-play-ripple {
+  animation: playBtnRipple 2s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+}
+
+/* Progress bar glowing scrubber thumb pulse */
+@keyframes progressThumbHalo {
+
+  0%,
+  100% {
+    transform: translateY(-50%) scale(1);
+    box-shadow: 0 0 6px rgba(255, 255, 255, 0.8), 0 0 12px rgba(239, 53, 237, 0.6);
+  }
+
+  50% {
+    transform: translateY(-50%) scale(1.3);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 1), 0 0 20px rgba(239, 53, 237, 0.95);
+  }
+}
+
+.animate-thumb-pulse {
+  animation: progressThumbHalo 2s ease-in-out infinite;
+}
+
+/* Laser Shimmer sweeping across progress bar */
+@keyframes progressLaserShimmer {
+  0% {
+    left: -30%;
+  }
+
+  100% {
+    left: 110%;
+  }
+}
+
+.animate-progress-shimmer {
+  animation: progressLaserShimmer 2.8s ease-in-out infinite;
+}
+
+/* ========================================================
+   SoundWave Luxury Page Load / Reload Entrance Experience
+   ======================================================== */
+
+/* Radial Bass Pulse Shockwaves */
+@keyframes bassShockwave {
+  0% {
+    transform: scale(0.75);
+    opacity: 0.9;
+  }
+
+  50% {
+    opacity: 0.45;
+  }
+
+  100% {
+    transform: scale(2.3);
+    opacity: 0;
+  }
+}
+
+.animate-bass-shockwave-1 {
+  animation: bassShockwave 2.1s cubic-bezier(0.1, 0.6, 0.3, 1) infinite;
+}
+
+.animate-bass-shockwave-2 {
+  animation: bassShockwave 2.1s cubic-bezier(0.1, 0.6, 0.3, 1) infinite 0.7s;
+}
+
+.animate-bass-shockwave-3 {
+  animation: bassShockwave 2.1s cubic-bezier(0.1, 0.6, 0.3, 1) infinite 1.4s;
+}
+
+/* Preloader Spinning Vinyl Record */
+@keyframes preloaderVinylSpin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-preloader-spin {
+  animation: preloaderVinylSpin 3s linear infinite;
+}
+
+/* Preloader Curtain Reveal Exit */
+@keyframes preloaderCurtainExit {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+    filter: blur(0px);
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(1.06);
+    filter: blur(14px);
+    pointer-events: none;
+  }
+}
+
+.animate-preloader-exit {
+  animation: preloaderCurtainExit 0.65s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+/* Page Entrance Stagger Animations on Reload */
+@keyframes pageSlideDownFade {
+  0% {
+    opacity: 0;
+    transform: translateY(-28px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pageFadeUp {
+  0% {
+    opacity: 0;
+    transform: translateY(32px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-page-slide-down {
+  animation: pageSlideDownFade 0.85s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-page-fade-up {
+  animation: pageFadeUp 0.95s cubic-bezier(0.16, 1, 0.3, 1) 0.1s both;
+}
+
+.animate-page-fade-up-delayed {
+  animation: pageFadeUp 0.95s cubic-bezier(0.16, 1, 0.3, 1) 0.25s both;
+}
+
+/* ============================================================
+   HERO HEADLINE LUXURY ANIMATIONS
+   "Your Music" and "Your World" Dynamic Typography Effects
+   ============================================================ */
+
+/* 1. Continuous Flowing Liquid Aurora Wave for "Your World" */
+@keyframes heroGradientFlow {
+  0% {
+    background-position: 0% center;
+  }
+
+  100% {
+    background-position: 200% center;
+  }
+}
+
+/* Rhythmic music beat pulse */
+@keyframes heroBeatPulse {
+
+  0%,
+  100% {
+    transform: scale(1);
+    filter: drop-shadow(0 4px 18px rgba(239, 53, 237, 0.28));
+  }
+
+  50% {
+    transform: scale(1.012);
+    filter: drop-shadow(0 6px 26px rgba(255, 122, 89, 0.45)) drop-shadow(0 2px 14px rgba(239, 53, 237, 0.4));
+  }
+}
+
+.animate-hero-gradient-flow {
+  background: linear-gradient(90deg,
+      #7835FF 0%,
+      #C026D3 15%,
+      #EF35ED 30%,
+      #FF7A59 50%,
+      #FFA07A 60%,
+      #FF7A59 70%,
+      #EF35ED 85%,
+      #7835FF 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation:
+    heroGradientFlow 4.5s linear infinite,
+    heroBeatPulse 3s ease-in-out infinite;
+}
+
+/* 2. Glossy Metallic Sheen Sweep for "Your Music" */
+@keyframes heroSheenSweep {
+  0% {
+    background-position: -150% 0;
+  }
+
+  40%,
+  100% {
+    background-position: 250% 0;
+  }
+}
+
+.animate-hero-sheen {
+  background: linear-gradient(110deg,
+      #110D20 0%,
+      #110D20 35%,
+      #8B5CF6 48%,
+      #D946EF 52%,
+      #110D20 65%,
+      #110D20 100%);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: heroSheenSweep 5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+/* 3. Twinkling Musical Sparkle Accent */
+@keyframes sparkleTwinkle {
+
+  0%,
+  100% {
+    transform: scale(0.8) rotate(0deg);
+    opacity: 0.65;
+    filter: drop-shadow(0 0 6px rgba(255, 122, 89, 0.5));
+  }
+
+  50% {
+    transform: scale(1.3) rotate(22deg);
+    opacity: 1;
+    filter: drop-shadow(0 0 16px rgba(255, 122, 89, 1)) drop-shadow(0 0 8px rgba(239, 53, 237, 0.8));
+  }
+}
+
+.animate-sparkle-twinkle {
+  animation: sparkleTwinkle 2.2s ease-in-out infinite;
+}
+
+/* 4. Smooth Staggered Entrance for Title */
+@keyframes heroTitleWordIn {
+  0% {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-hero-word-1 {
+  display: inline-block;
+  animation: heroTitleWordIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.1s both;
+}
+
+.animate-hero-word-2 {
+  display: inline-block;
+  animation: heroTitleWordIn 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.22s both;
+}
+
+/* ============================================================
+   GUITAR NAVBAR ANIMATIONS
+   ============================================================ */
+
+/* Guitar String Strum Vibration */
+@keyframes stringVibrate {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  25% {
+    transform: translateY(-1.2px);
+  }
+
+  75% {
+    transform: translateY(1.2px);
+  }
+}
+
+.animate-string-vibrate {
+  animation: stringVibrate 0.12s ease-in-out infinite alternate;
+}
+
+/* Guitar Ambient Sunset Shadow */
+.guitar-navbar-shadow {
+  box-shadow:
+    0 16px 44px -8px rgba(220, 38, 38, 0.28),
+    0 8px 24px -4px rgba(120, 53, 255, 0.22),
+    0 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+/* ============================================================
+   TRENDING NOW CARD ANIMATIONS
+   ============================================================ */
+
+/* Staggered Card Entrance */
+@keyframes trendingCardIn {
+  0% {
+    opacity: 0;
+    transform: translateY(28px) scale(0.96);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.animate-trending-card {
+  animation: trendingCardIn 0.65s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* Bouncy Heart Pop */
+@keyframes heartPop {
+  0% {
+    transform: scale(1);
+  }
+
+  40% {
+    transform: scale(1.48);
+  }
+
+  70% {
+    transform: scale(0.88);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+.animate-heart-pop {
+  animation: heartPop 0.42s cubic-bezier(0.175, 0.885, 0.32, 1.275) both;
+}
+
+/* Play Button Pulse Wave */
+@keyframes playRadarPulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+
+  100% {
+    transform: scale(1.85);
+    opacity: 0;
+  }
+}
+
+.animate-play-radar {
+  animation: playRadarPulse 1.4s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+/* Active Playing Card Aura */
+@keyframes playingCardBorderGlow {
+
+  0%,
+  100% {
+    box-shadow: 0 0 15px rgba(239, 53, 237, 0.25), 0 12px 30px rgba(0, 0, 0, 0.4);
+    border-color: rgba(239, 53, 237, 0.45);
+  }
+
+  50% {
+    box-shadow: 0 0 26px rgba(239, 53, 237, 0.55), 0 16px 36px rgba(120, 53, 255, 0.35);
+    border-color: rgba(239, 53, 237, 0.85);
+  }
+}
+
+.animate-playing-card {
+  animation: playingCardBorderGlow 2.4s ease-in-out infinite;
+}
+
+/* Mini Equalizer Bar for Playing Track */
+@keyframes miniEqualizerBounce1 {
+
+  0%,
+  100% {
+    height: 4px;
+  }
+
+  50% {
+    height: 16px;
+  }
+}
+
+@keyframes miniEqualizerBounce2 {
+
+  0%,
+  100% {
+    height: 14px;
+  }
+
+  50% {
+    height: 6px;
+  }
+}
+
+@keyframes miniEqualizerBounce3 {
+
+  0%,
+  100% {
+    height: 8px;
+  }
+
+  50% {
+    height: 18px;
+  }
+}
+
+@keyframes miniEqualizerBounce4 {
+
+  0%,
+  100% {
+    height: 16px;
+  }
+
+  50% {
+    height: 5px;
+  }
+}
+
+.animate-bar-1 {
+  animation: miniEqualizerBounce1 0.75s ease-in-out infinite;
+}
+
+.animate-bar-2 {
+  animation: miniEqualizerBounce2 0.6s ease-in-out infinite;
+}
+
+.animate-bar-3 {
+  animation: miniEqualizerBounce3 0.85s ease-in-out infinite;
+}
+
+.animate-bar-4 {
+  animation: miniEqualizerBounce4 0.68s ease-in-out infinite;
+}
+
+/* ============================================================
+   TRENDING 3D STAGE & CAROUSEL ANIMATIONS
+   ============================================================ */
+
+/* Center Featured Card Radiant Neon Halo Pulse */
+@keyframes centerNeonGlow {
+
+  0%,
+  100% {
+    box-shadow:
+      0 0 25px rgba(236, 72, 153, 0.55),
+      0 0 50px rgba(168, 85, 247, 0.35),
+      0 20px 45px rgba(15, 8, 38, 0.45);
+    border-color: rgba(244, 114, 182, 0.95);
+  }
+
+  50% {
+    box-shadow:
+      0 0 38px rgba(236, 72, 153, 0.75),
+      0 0 75px rgba(168, 85, 247, 0.50),
+      0 24px 55px rgba(15, 8, 38, 0.55);
+    border-color: rgba(251, 146, 60, 0.85);
+  }
+}
+
+.animate-center-card-glow {
+  animation: centerNeonGlow 3.5s ease-in-out infinite;
+}
+
+/* Floor Rings Breathing Pulse */
+@keyframes floorRingsPulse {
+
+  0%,
+  100% {
+    opacity: 0.65;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.95;
+    transform: scale(1.025);
+  }
+}
+
+.animate-floor-rings {
+  animation: floorRingsPulse 4s ease-in-out infinite;
+  transform-origin: center center;
+}
+
+/* Background Soft Waves Floating Drift */
+@keyframes bgWaveDrift {
+
+  0%,
+  100% {
+    transform: translateX(0px) translateY(0px);
+  }
+
+  50% {
+    transform: translateX(12px) translateY(-6px);
+  }
+}
+
+.animate-bg-wave-drift {
+  animation: bgWaveDrift 9s ease-in-out infinite;
+}
+
+/* ============================================================
+   POPULAR ARTISTS ROTATING NEON RING ANIMATION
+   ============================================================ */
+
+@keyframes artistRingRotate {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-artist-ring {
+  animation: artistRingRotate 6s linear infinite;
+  will-change: transform;
+}
+
+.group:hover .animate-artist-ring {
+  animation-duration: 2.4s;
+}
+
+@keyframes artistGlowPulse {
+
+  0%,
+  100% {
+    opacity: 0.55;
+    transform: rotate(0deg) scale(0.98);
+  }
+
+  50% {
+    opacity: 0.85;
+    transform: rotate(180deg) scale(1.04);
+  }
+}
+
+.animate-artist-glow {
+  animation: artistGlowPulse 5s linear infinite;
+  will-change: transform, opacity;
+}
+
+/* ──────────────────────────────────────────────────────────
+   Hero Arched Title Shining & Sparkle Animations
+   - titleSparkleShine: Radiant blooming flare on the sparkle star ✦
+   - microStarTwinkleA/B: Subtle twinkling micro-sparkles above the arch
+   ────────────────────────────────────────────────────────── */
+@keyframes titleSparkleShine {
+
+  0%,
+  100% {
+    opacity: 0.8;
+    filter: drop-shadow(0 0 2px rgba(244, 63, 94, 0.6));
+  }
+
+  40% {
+    opacity: 1;
+    filter: drop-shadow(0 0 6px #ffffff) drop-shadow(0 0 14px #ec4899) drop-shadow(0 0 24px #f43f5e);
+  }
+
+  70% {
+    opacity: 0.88;
+    filter: drop-shadow(0 0 4px rgba(244, 63, 94, 0.8));
+  }
+}
+
+.animate-title-sparkle {
+  animation: titleSparkleShine 2.4s ease-in-out infinite;
+  will-change: filter, opacity;
+}
+
+@keyframes microStarTwinkleA {
+
+  0%,
+  100% {
+    opacity: 0.12;
+    transform: scale(0.55);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.25);
+    filter: drop-shadow(0 0 5px #ec4899);
+  }
+}
+
+@keyframes microStarTwinkleB {
+
+  0%,
+  100% {
+    opacity: 0.1;
+    transform: scale(0.5);
+  }
+
+  50% {
+    opacity: 0.95;
+    transform: scale(1.2);
+    filter: drop-shadow(0 0 5px #a855f7);
+  }
+}
+
+.animate-micro-star-1 {
+  transform-origin: 370px 38px;
+  animation: microStarTwinkleA 3.2s ease-in-out infinite;
+  animation-delay: 0.6s;
+  will-change: transform, opacity, filter;
+}
+
+.animate-micro-star-2 {
+  transform-origin: 540px 36px;
+  animation: microStarTwinkleB 3.6s ease-in-out infinite;
+  animation-delay: 1.8s;
+  will-change: transform, opacity, filter;
+}
+
+/* ============================================================
+   PAGE RELOAD / LOAD HEADING ENTRANCE ANIMATION
+   Smooth blur-to-focus slide-up with subtle scale expansion
+   Triggered on initial page load / reload across all headings
+   ============================================================ */
+@keyframes pageHeadingLoad {
+  0% {
+    opacity: 0;
+    transform: translateY(22px) scale(0.97);
+    filter: blur(8px);
+  }
+
+  60% {
+    opacity: 0.95;
+    filter: blur(0px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+@keyframes pageSubheadingLoad {
+  0% {
+    opacity: 0;
+    transform: translateY(14px);
+    filter: blur(4px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+.animate-heading-load {
+  animation: pageHeadingLoad 0.85s cubic-bezier(0.16, 1, 0.3, 1) both;
+  will-change: transform, opacity, filter;
+}
+
+.animate-subheading-load {
+  animation: pageSubheadingLoad 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.12s both;
+  will-change: transform, opacity, filter;
+}
+
+/* ============================================================
+   POPULAR ARTISTS JIGSAW PUZZLE WHEEL ROTATION ANIMATION
+   Smooth continuous 360deg planetary turntable spin (45s linear infinite)
+   Artist cards counter-rotate to stay 100% upright & horizontal
+   Pauses gracefully on hover for effortless reading and clicking
+   ============================================================ */
+
+@keyframes puzzleWheelSpin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes puzzleCardCounterSpin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(-360deg);
+  }
+}
+
+.animate-puzzle-wheel-spin {
+  transform-box: view-box;
+  transform-origin: 811px 443px;
+  animation: puzzleWheelSpin 45s linear infinite;
+  will-change: transform;
+}
+
+.animate-puzzle-card-counter {
+  transform-box: view-box;
+  animation: puzzleCardCounterSpin 45s linear infinite;
+  will-change: transform;
+}
+
+.puzzle-wheel-rotator:hover .animate-puzzle-wheel-spin,
+.puzzle-wheel-rotator:hover .animate-puzzle-card-counter {
+  animation-play-state: paused;
+}
+
+/* =========================================================================
+   SCROLL REVEAL SECTION ANIMATION
+   ========================================================================= */
+.scroll-reveal {
+  opacity: 0;
+  transform: translateY(28px) scale(0.985);
+  transition: opacity 750ms cubic-bezier(0.16, 1, 0.3, 1), transform 750ms cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, opacity;
+}
+
+.scroll-reveal.is-in-view {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+
